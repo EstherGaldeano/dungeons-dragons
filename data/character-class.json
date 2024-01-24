@@ -1,0 +1,62 @@
+[
+    {   "id":"01",
+        "class_name": "Barbarian",
+        "imgURL":"../images/classes/barbarian.webp",
+        "information": "The strong embrace the wild that hides inside -keen instincts, primar physicality, and most of all, and unbridled, unquenchable rage "
+    },
+    {   "id":"02",
+        "class_name": "Bard",
+        "imgURL":"../images/classes/bard.webp",
+        "information": "Bards know music is more than idle fancy -it ispower. Through study and adventure, these travelling troubadours master song, speech, and the magic within"
+    },
+    {   "id":"03",
+        "class_name": "Cleric",
+        "imgURL":"../images/classes/cleric.webp",
+        "information": "Clerics are representatives of the gods they worship, wielding potent divine magic for goods or ill"
+    },
+    {   "id":"04",
+        "class_name": "Druid",
+        "imgURL":"../images/classes/druid.webp",
+        "information": "Druids channel the elemental forces of nature and share a deep kinship with animals with animals. Mastery of Wilds Shape allows them to transform into beasts from all over the Realms"
+    },
+    {   "id":"05",
+        "class_name": "Fighter",
+        "imgURL":"../images/classes/fighter.webp",
+        "information": "Fighters have mastered the art of combat, wielding weapons with unmatched skill and wearing armor like a second skin"
+    },
+    {   "id":"06",
+        "class_name": "Monk",
+        "imgURL":"../images/classes/monk.webp",
+        "information": "Some reach enlightenment by languid meditatio n - others do so in the heat of battle. Monks manipulate ki to empower their own strikes and debilitate their foes"
+    },
+    {   "id":"07",
+        "class_name": "Paladin",
+        "imgURL":"../images/classes/paladin.webp",
+        "information": "A promise made so deeply that it becomes divine in itself flows through a paladin, burning bright enough to inspire allies and smite foes"
+    },
+    {   "id":"08",
+        "class_name": "Rangers",
+        "imgURL":"../images/classes/ranger.webp",
+        "information": "Rangers are unrivalled scouts and trackers honing a deep connection with nature in orer to hunt their favoured prey"
+    },
+    {   "id":"09",
+        "class_name": "Rogue",
+        "imgURL":"../images/classes/rogue.webp",
+        "information": "With stealth, skill, and uncanny reflexes, rogues` versatility lets them get the upper hand in almost any situation"
+    },
+    {   "id":"10",
+        "class_name": "Sorcerer",
+        "imgURL":"../images/classes/sorcerer.webp",
+        "information": "Sorcerers are natural spellcasters, drawing on inherent magic from a gift or bloodline"
+    },
+    {   "id":"11",
+        "class_name": "Warlock",
+        "imgURL":"../images/classes/warlock.webp",
+        "information": "Bound by a pact to an all-powerful patron, warlocks trade their loyalty for supernatural abilities and unique magic"
+    },
+    {   "id":"12",
+        "class_name": "Wizard",
+        "imgURL":"../images/classes/wizard.webp",
+        "information": "Wizards master the arcane by specialising and individual schools of magic, combining ancient spells with modern research"
+    }
+  ]

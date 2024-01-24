@@ -1,0 +1,38 @@
+[
+    {   "id":"chaotic-evil",
+        "alignment_name": "Chaotic Evil",
+        "imgURL":"../images/aligns/alignment_cats.jpg"
+    },
+    {   "id":"chaotic-good",
+        "class_name": "Chaotic Good",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"chaotic-neutral",
+        "class_name": "Chaotic Neutral",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"lawful-evil",
+        "class_name": "Lawful Evil",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"lawful-good",
+        "alignment_name": "Lawful Good",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"lawful-neutral",
+        "class_name": "Lawful Neutral",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"neutral",
+        "class_name": "Neutral",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"neutral-evil",
+        "class_name": "Neutral Evil",
+        "imgURL":"../images/aligns/lawful-good.png"
+    },
+    {   "id":"neutral-good",
+        "class_name": "Neutral Good",
+        "imgURL":"../images/aligns/lawful-good.png"
+    }
+]

@@ -1,0 +1,56 @@
+[
+    {
+        "index": "dragonborn",
+        "name": "Dragonborn",
+        "imgURL":"../images/races/dragonborn.png"
+      },
+      
+    {
+        "index": "drow",
+        "name": "Drow",
+        "imgURL":"../images/races/drow.png"
+      },
+      {
+        "index": "dwarf",
+        "name": "Dwarf",
+        "imgURL": "../images/races/dwarf.png"
+      },
+      
+      {
+        "index": "elf",
+        "name": "Elf",
+        "imgURL": "../images/races/elf.png"
+      },
+      {
+        "index": "gnome",
+        "name": "Gnome",
+        "imgURL": "../images/races/gnome.png"
+      },
+      {
+        "index": "half-elf",
+        "name": "Half-Elf",
+        "imgURL": "../images/races/halfelf.png"
+      },
+      {
+        "index": "half-orc",
+        "name": "Half-Orc",
+        "imgURL": "../images/races/halforc.png"
+      },
+      {
+        "index": "halfling",
+        "name": "Halfling",
+        "imgURL": "../images/races/halfling.png"
+      },
+      {
+        "index": "human",
+        "name": "Human",
+        "imgURL": "../images/races/human.png"
+      },
+      {
+        "index": "tiefling",
+        "name": "Tiefling",
+        "imgURL": "../images/races/tiefling.png"
+      }
+    ]
+  
+  
