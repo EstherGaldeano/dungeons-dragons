@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>D&D Character Creator</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="../js/code.js" defer></script>
+    <script src="../js/skills.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-
     <header class="header">
         <div class="header-container">
             <div>
-                <h1>D&D Character Creator</h1>
-                <p>
-                    Classes for Baldur's Gate 3 are styles of play for each character of the game. In BG3, each class
-                    also has
-                    several Subclasses that players can select after gaining sufficient XP. Choosing a class determines
-                    your
-                </p>
+                <br>
+                <h1>D&D <hr> Character Creator</h1>
+                <br>
             </div>
-            <img class="astarion-header" src="../images/others/Astarion.png" alt="astarion-image" />
+            <!-- <img class="astarion-header" src="../images/others/Astarion.png" alt="astarion-image" /> -->
         </div>
-
     </header>
 
     <div class="row">
@@ -36,56 +36,56 @@
                 <h3 class="character-title">Character Information</h3>
 
                 <div class="character-info" onclick=" changeCentralPanel('welcome')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                    <img class="check-circle" src="../images/icons/dice-green.png" alt="avatar1">
 
-                    <div class="character-details">
+                    <div class="character-details" id="name">
                         <h4 class="info-title">Name</h4>
                         <p class="info-selected">Nyx</p>
                     </div>
                 </div>
 
                 <div class="character-info" onclick=" changeCentralPanel('race-subrace')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                    <img class="check-circle" src="../images/icons/dice-green.png" alt="avatar1">
 
-                    <div class="character-details">
+                    <div class="character-details" id="race">
                         <h4 class="info-title">Race</h4>
                         <p class="info-selected">Tiefling</p>
                     </div>
                 </div>
 
                 <div class="character-info" onclick=" changeCentralPanel('class')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                    <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
-                    <div class="character-details">
+                    <div class="character-details" id="class">
                         <h4 class="info-title">Class</h4>
                         <p class="info-selected">Rogue</p>
                     </div>
                 </div>
 
                 <div class="character-info" onclick=" changeCentralPanel('alignment')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                    <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
-                    <div class="character-details">
+                    <div class="character-details" id="align">
                         <h4 class="info-title">Alignment</h4>
                         <p class="info-selected">Chaotic Evil</p>
                     </div>
                 </div>
 
 
-                <div class="character-info" onclick=" changeCentralPanel('backstory')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                <div class="character-info" onclick=" changeCentralPanel('ability')">
+                    <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
-                    <div class="character-details">
-                        <h4 class="info-title">Backstory</h4>
+                    <div class="character-details" id="skills">
+                        <h4 class="info-title">Ability</h4>
                         <p class="info-selected">Done</p>
                     </div>
                 </div>
 
-                <div class="character-info" onclick=" changeCentralPanel('ability')">
-                    <img class="check-circle" src="../images/icons/check-circle.svg" alt="avatar1">
+                <div class="character-info" onclick=" changeCentralPanel('avatar')">
+                    <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
-                    <div class="character-details">
-                        <h4 class="info-title">Ability</h4>
+                    <div class="character-details" id="avatar">
+                        <h4 class="info-title">Avatar</h4>
                         <p class="info-selected">Done</p>
                     </div>
                 </div>
@@ -94,19 +94,13 @@
                     <li id="class-list" class="list-classes">
                 </ul>
             </div>
-
         </div>
-
 
         <!-- CENTRAL PANEL -->
         <div class="col-lg-7">
-
             <section class="central-panel">
-
                 <div class="container-central-panel">
-
                     <!-- ************************************************** WELCOME **************************************************-->
-
                     <div id="welcome-panel">
 
                         <h1>WELCOME PANEL</h1>
@@ -114,139 +108,104 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, urna a tempus
                             consectetur, orci sem hendrerit leo, eget aliquet lorem ligula quis ligula. Nam id dolor
                             ipsum.
-                            Ut sagittis metus vitae justo consectetur, ut euismod ipsum imperdiet. Aenean sodales, ex
-                            mattis
-                            luctus lobortis, velit lacus efficitur dolor, id egestas turpis leo vel dolor. Etiam finibus
-                            nulla sit amet placerat congue. In hac habitasse platea dictumst. Cras pellentesque a urna
-                            eu
-                            consequat. Etiam pretium posuere nisi ac vehicula. Cras feugiat suscipit elit. Nunc enim
-                            velit,
-                            ultricies vel elit ut, iaculis convallis turpis. Etiam et libero justo. Quisque sem tellus,
-                            ultrices et mi in, commodo vulputate sem.</p>
-
+                         </p>
 
                         <form>
                             <div class="form-group text-center">
-                                <label for="exampleInputEmail1">Character Name</label>
-                                <input type="text" class="form-name" id="form-name" placeholder="Enter your character name">
-                                <button type="submit" class="submit-btn btn btn-dark">Submit</button>
+                                <label for="character-name">Character Name</label>
+                                <input type="text" class="form-name" id="form-name"
+                                    placeholder="Enter your character name">
                             </div>
                         </form>
                     </div>
 
-                  
-                      <!-- ************************************************** CLASS **************************************************-->      
-                      
-                      
-                      <div id="class-panel" style="display:none">
-                        <!-- <div class="central-panel-detail-info">
-                           
-                        </div> -->
-        
-                      </div>
-                   
+                    <!-- ************************************************** CLASS **************************************************-->
+
+                    <div id="class-panel" style="display:none"></div>
+
                     <!-- ****************************************************** RACE **************************************************-->
 
+                    <div id="race-subrace-panel" style="display:none"></div>
 
-                    <div id="race-subrace-panel" style="display:none">
-                   <!-- <img src="../images/races/dwarf.png" alt=""> -->
-                  
-                    </div>
-          
+                    <!-- ************************************************** ALIGNMENT **************************************************-->
 
-                   <!-- ************************************************** ALIGNMENT **************************************************-->
-                    
-                    <div id="alignment-panel" style="display:none">
-                        <h1> ALIGNMENT PANEL</h1>
-                        <p>Select yout alignment</p>
-
+                    <div id="alignment-panel" style="display:none"> 
                     </div>
 
                     <!-- ************************************************** BACKSTORY **************************************************-->
-                    <div id="backstory-panel" style="display:none">
-                        <h1> BACKSTORY PANEL</h1>
-
-                        <textarea class="backstory-textarea" rows="12"></textarea>
+                    <div id="avatar-panel" style="display:none">
+                        <h1>UPLOAD YOUR AVATAR</h1>
+                        <div>
+                            <label for="formFileLg" class="form-label"></label>
+                            <input class="form-control" id="formFileLg" type="file">
+                            <div class="form-check">
+                                <input class="form-avatar-input" type="checkbox" value="" id="avatar-option">
+                                    <label class="avatar-label" for="checkAvatar">
+                                        I prefer it without avatar, thanks
+                                    </label>
+                              </div>
+                          </div>
                     </div>
-                    
+
                     <!-- ************************************************** ABILITY **************************************************-->
 
                     <div id="ability-panel" style="display:none">
                         <h1> ABILITY PANEL</h1>
                     </div>
-
+                    <button type="button" class="btn btn-dark btn-lg sendButton disabled">Send</button>
+                    
                 </div>
 
-    
-
-                <div class="btn-container">
-                    <button type="button" class="btn btn-dark btn-lg text-center create-button">Create PDF
-                        Sheet</button>
-                </div>
+                <!-- <div class="btn-container">
+<button type="button" class="btn btn-dark btn-lg text-center create-button">Create PDF Sheet</button></div> -->
             </section>
-
-
         </div>
         <div class="col-lg-3">
-
-
-            <div class="card text-white bg-dark">
-
+            <div class="summary">
                 <img class="class-avatar" src="../images/classes/barbarian.webp" class="card-img-top" alt="...">
 
-                <div class="card-body">
-                    <h5 class="card-title">Your Character</h5>
-                    <h6>Level 1 Rogue</h6>
+                <h3 class="text">Nyx</h3>
+                <h4 class="text">Level 1 Rogue</h4>
+                <p class="card-text">With stealth, skill, and uncanny reflexes, rogues' versatility lets them get the upper hand in almost any situation</p>
+                <table class="table text-center overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th>STR</th>
+                            <th>DEX</th>
+                            <th>CON</th>
+                            <th>INT</th>
+                            <th>WIS</th>
+                            <th>CHA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td">20</td>
+                            <td class="td">20</td>
+                            <td class="td">20</td>
+                            <td class="td">20</td>
+                            <td class="td">20</td>
+                            <td class="td">20</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="text">más detalles</h3>
+                <p class="card-text">bla bla bla</p>
 
-                    <p class="card-text">Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation,
-                        Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth"</p>
-
-                    <table class="table table-dark text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">STR</th>
-                                <th scope="col">DEX</th>
-                                <th scope="col">CON</th>
-                                <th scope="col">INT</th>
-                                <th scope="col">WIS</th>
-                                <th scope="col">CHA</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="td-STR">20</td>
-                                <td class="td-DEX">20</td>
-                                <td class="td-CON">20</td>
-                                <td class="td-INT">20</td>
-                                <td class="td-WIS">20</td>
-                                <td class="td-CHA">20</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h6>más detalles</h6>
-                    <p class="card-text">bla bla bla</p>
+                <div class="avatar-card">
+                    <h3 class="text">Your Avatar</h3>
+                    <img id="user-avatar" src="../images/others/discord-logo.png " alt="user-avatar">         
                 </div>
-
+                <!-- <button type="button" class="btn btn-dark btn-lg sendButton">Save Character</button> -->
+                <button type="button" class="btn btn-dark btn-lg sendButton disabled">Print Character Sheet</button>
             </div>
-
-            <div class="card avatar-card text-white bg-dark avatar-card">
-                <div class="card-body">
-                    <h5 class="card-title">Your Avatar</h5>
-                    <img id="user-avatar" src="../images/others/discord-logo.png " alt="user-avatar">
-                </div>
-
-            </div>
-
-
         </div>
     </div>
 
     <!-- FOOTER -->
     <footer class="container-footer">
-
         <p id="developedBy">Developed by retse.dev</p>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -260,31 +219,47 @@
 
 </body>
 
+<!-- TEMPLATES -->
+
 <template id="box-classes-template">
-    <div class="box">       
+    <div class="box">
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
-    </div>
 
+    </div>
 </template>
+
 
 <template id="box-races-template">
-    <div class="box-race">       
+    <div class="box-race">
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
     </div>
 </template>
 
-        
+
 <template id="box-alignments-template">
-    <div class="box-alignment">       
-        <img src="----imageSource-----" alt="---imageAlt---">
+    <div class="box-alignment">
+        <div class="img-box">
+            <img class="align-img" alt="---imageAlt---">
+        </div>
         <p class="panel-options"></p>
     </div>
 </template>
 
+<template id="box-skills-template">
+    <div class="input-group mb-3">
+        <span class="input-group-text"></span>
+        <input type="number"
+            step="1"
+            min="8"
+            max="20"
+            id="numeroInput" 
+            class="form-control" value="8">
+        <!-- <button class="btn btn-outline-secondary" onclick="restar()">-</button>
+        <button class="btn btn-outline-secondary" onclick="sumar()">+</button> -->
+    </div>
+</template>
 
-
-
-</html>   
-
+<!-- <div> Iconos diseñados por <a href="https://www.flaticon.es/autores/amethyst-prime" title="Amethyst prime"> Amethyst prime </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div> -->
+</html>

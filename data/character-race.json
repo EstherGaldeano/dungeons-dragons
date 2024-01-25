@@ -37,11 +37,6 @@
         "imgURL": "../images/races/halforc.png"
       },
       {
-        "index": "halfling",
-        "name": "Halfling",
-        "imgURL": "../images/races/halfling.png"
-      },
-      {
         "index": "human",
         "name": "Human",
         "imgURL": "../images/races/human.png"

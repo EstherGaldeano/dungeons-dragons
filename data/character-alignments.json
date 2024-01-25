@@ -1,19 +1,19 @@
 [
     {   "id":"chaotic-evil",
         "alignment_name": "Chaotic Evil",
-        "imgURL":"../images/aligns/alignment_cats.jpg"
+        "imgURL":"../images/aligns/Astarion.png"
     },
     {   "id":"chaotic-good",
         "class_name": "Chaotic Good",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/karlach.png"
     },
     {   "id":"chaotic-neutral",
         "class_name": "Chaotic Neutral",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/Wyll.png"
     },
     {   "id":"lawful-evil",
         "class_name": "Lawful Evil",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/Laezel.png"
     },
     {   "id":"lawful-good",
         "alignment_name": "Lawful Good",
@@ -25,14 +25,14 @@
     },
     {   "id":"neutral",
         "class_name": "Neutral",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/Gale.png"
     },
     {   "id":"neutral-evil",
         "class_name": "Neutral Evil",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/Shadowheart.png"
     },
     {   "id":"neutral-good",
         "class_name": "Neutral Good",
-        "imgURL":"../images/aligns/lawful-good.png"
+        "imgURL":"../images/aligns/halsin.jpg"
     }
 ]
