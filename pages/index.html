@@ -6,40 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>D&D Character Creator</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="../js/code.js" defer></script>
-    <script src="../js/skills.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="../js/code.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Nova+Cut&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="header">
         <div class="header-container">
-            <div>
+            <!-- <div>
                 <br>
-                <h1>D&D <hr> Character Creator</h1>
+                <h1 id="pageTitle">D&D Character Creator</h1>
+                <img class="header-dice text-center" src="../images/icons/header-dice.png" alt="">
                 <br>
-            </div>
-            <!-- <img class="astarion-header" src="../images/others/Astarion.png" alt="astarion-image" /> -->
+            </div> -->
         </div>
     </header>
 
     <div class="row">
-        <div class="col-lg-2">
-
+        <div class="col-lg-3">
             <div class="character-selection text-white">
-                <h3 class="character-title">Character Information</h3>
+                <h2 class="character-title">Character Information</h2>
 
                 <div class="character-info" onclick=" changeCentralPanel('welcome')">
                     <img class="check-circle" src="../images/icons/dice-green.png" alt="avatar1">
 
                     <div class="character-details" id="name">
-                        <h4 class="info-title">Name</h4>
+                        <h3 class="info-title">Name</h3>
                         <p class="info-selected">Nyx</p>
                     </div>
                 </div>
@@ -48,7 +46,7 @@
                     <img class="check-circle" src="../images/icons/dice-green.png" alt="avatar1">
 
                     <div class="character-details" id="race">
-                        <h4 class="info-title">Race</h4>
+                        <h3 class="info-title">Race</h3>
                         <p class="info-selected">Tiefling</p>
                     </div>
                 </div>
@@ -57,7 +55,7 @@
                     <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
                     <div class="character-details" id="class">
-                        <h4 class="info-title">Class</h4>
+                        <h3 class="info-title">Class</h3>
                         <p class="info-selected">Rogue</p>
                     </div>
                 </div>
@@ -66,7 +64,7 @@
                     <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
                     <div class="character-details" id="align">
-                        <h4 class="info-title">Alignment</h4>
+                        <h3 class="info-title">Alignment</h3>
                         <p class="info-selected">Chaotic Evil</p>
                     </div>
                 </div>
@@ -76,7 +74,7 @@
                     <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
                     <div class="character-details" id="skills">
-                        <h4 class="info-title">Ability</h4>
+                        <h3 class="info-title">Ability</h3>
                         <p class="info-selected">Done</p>
                     </div>
                 </div>
@@ -85,7 +83,7 @@
                     <img class="check-circle" src="../images/icons/dice-red.png" alt="avatar1">
 
                     <div class="character-details" id="avatar">
-                        <h4 class="info-title">Avatar</h4>
+                        <h3 class="info-title">Avatar</h3>
                         <p class="info-selected">Done</p>
                     </div>
                 </div>
@@ -97,13 +95,13 @@
         </div>
 
         <!-- CENTRAL PANEL -->
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <section class="central-panel">
                 <div class="container-central-panel">
                     <!-- ************************************************** WELCOME **************************************************-->
                     <div id="welcome-panel">
 
-                        <h1>WELCOME PANEL</h1>
+                        <h1>WELCOME</h1>
                         <h2>Welcome to our D&D character creator</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, urna a tempus
                             consectetur, orci sem hendrerit leo, eget aliquet lorem ligula quis ligula. Nam id dolor
@@ -113,26 +111,37 @@
                         <form>
                             <div class="form-group text-center">
                                 <label for="character-name">Character Name</label>
-                                <input type="text" class="form-name" id="form-name"
-                                    placeholder="Enter your character name">
+                                <input type="text" class="form-name" id="form-name" placeholder="Tav">
+
                             </div>
                         </form>
                     </div>
 
                     <!-- ************************************************** CLASS **************************************************-->
 
-                    <div id="class-panel" style="display:none"></div>
+                    <div id="class-panel" style="display:none">
+                        <!-- <button type="button" class="btn btn-secondary">Select</button> -->
+                    </div>
 
                     <!-- ****************************************************** RACE **************************************************-->
 
-                    <div id="race-subrace-panel" style="display:none"></div>
+                    <div id="race-subrace-panel" style="display:none">
+                        <!-- <button type="button" class="btn btn-secondary">Select</button> -->
+                    </div>
 
                     <!-- ************************************************** ALIGNMENT **************************************************-->
 
-                    <div id="alignment-panel" style="display:none"> 
+                    <div id="alignment-panel" style="display:none">
+                        <!-- <button type="button" class="btn btn-secondary">Select</button>  -->
+                    </div>
+                    <!-- ************************************************** ABILITY **************************************************-->
+
+                    <div id="ability-panel" style="display:none">
+                        <h1> ABILITY PANEL</h1>
+                        <!-- <button type="button" class="btn btn-secondary">Select</button>  -->
                     </div>
 
-                    <!-- ************************************************** BACKSTORY **************************************************-->
+                    <!-- ************************************************** AVATAR **************************************************-->
                     <div id="avatar-panel" style="display:none">
                         <h1>UPLOAD YOUR AVATAR</h1>
                         <div>
@@ -144,16 +153,12 @@
                                         I prefer it without avatar, thanks
                                     </label>
                               </div>
+
+                              <button type="button" class="btn btn-secondary">Enviar</button> 
                           </div>
                     </div>
 
-                    <!-- ************************************************** ABILITY **************************************************-->
-
-                    <div id="ability-panel" style="display:none">
-                        <h1> ABILITY PANEL</h1>
-                    </div>
-                    <button type="button" class="btn btn-dark btn-lg sendButton disabled">Send</button>
-                    
+                   
                 </div>
 
                 <!-- <div class="btn-container">
@@ -162,9 +167,10 @@
         </div>
         <div class="col-lg-3">
             <div class="summary">
-                <img class="class-avatar" src="../images/classes/barbarian.webp" class="card-img-top" alt="...">
-
-                <h3 class="text">Nyx</h3>
+                <br>
+                <h3 class="text">Summary</h3>
+                <img class="class-avatar" src="../images/classes/rogue.webp" class="card-img-top" alt="...">
+                <h4 class="text">Tiefling</h>
                 <h4 class="text">Level 1 Rogue</h4>
                 <p class="card-text">With stealth, skill, and uncanny reflexes, rogues' versatility lets them get the upper hand in almost any situation</p>
                 <table class="table text-center overflow-hidden">
@@ -189,8 +195,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3 class="text">más detalles</h3>
-                <p class="card-text">bla bla bla</p>
+                <!-- <h3 class="text">More Details</h3>
+                <p class="card-text">bla bla bla</p> -->
 
                 <div class="avatar-card">
                     <h3 class="text">Your Avatar</h3>
@@ -203,9 +209,11 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="container-footer">
-        <p id="developedBy">Developed by retse.dev</p>
-    </footer>
+    <!-- <footer class="container-footer">
+    
+    </footer> -->
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -221,29 +229,31 @@
 
 <!-- TEMPLATES -->
 
-<template id="box-classes-template">
-    <div class="box">
-        <img src="----imageSource-----" alt="---imageAlt---">
-        <p class="panel-options"></p>
-
-    </div>
-</template>
-
 
 <template id="box-races-template">
     <div class="box-race">
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Detalle</button>
     </div>
 </template>
 
+<template id="box-classes-template">
+    <div class="box">
+        <img src="----imageSource-----" alt="---imageAlt---">
+        <p class="panel-options"></p>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Detalle</button>
+    </div>
+</template>
 
 <template id="box-alignments-template">
     <div class="box-alignment">
-        <div class="img-box">
+        <!-- <div class="img-box">
             <img class="align-img" alt="---imageAlt---">
-        </div>
+        </div> -->
         <p class="panel-options"></p>
+        <p class="alignment-detail"></p>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">Detalle</button>
     </div>
 </template>
 
@@ -261,5 +271,21 @@
     </div>
 </template>
 
+   <!-- The Modal -->
+   <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+    
+        <!-- Modal footer -->
+        <div>
+        <h1>hola</h1>
+        </div>
+        <div>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Seleccionar</button>
+        </div>
+  
+   
+    </div>
+  </div>
 <!-- <div> Iconos diseñados por <a href="https://www.flaticon.es/autores/amethyst-prime" title="Amethyst prime"> Amethyst prime </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div> -->
 </html>

@@ -1,6 +1,13 @@
 //API DATA
 const apiURL= 'https://www.dnd5eapi.co/api';
 
+async function fetchData(endpoint){
+    const response = await fetch (apiURL +'/'+endpoint);
+    if (!response.ok) return []
+    const data = await response.json();
+    return data;
+}
+
 //RELLENAMOS TEMPLATE CON LOS DATOS DEL JSON
 
 /**************************CLASES***************************************** */
@@ -19,6 +26,13 @@ const apiURL= 'https://www.dnd5eapi.co/api';
             const box = template.cloneNode(true);
             box.querySelector("div");
             box.querySelector('div').addEventListener("click",showClassDetail);
+            // const maxRotation = 5; //degrees
+            // const maxTranslation = 1.5; //rem
+            // const rot = Math.random() * maxRotation * 2 - maxRotation;
+            // const trans = Math.random() * maxTranslation * 2 - maxTranslation;
+            // box.querySelector(
+            // "div"
+            // ).style.transform = `rotate(${rot}deg) translate(${trans}rem)`;
             fragment.appendChild(box);
         });
  
@@ -30,13 +44,6 @@ window.addEventListener('DOMContentLoaded',  fetchClassFromFile);
     const racePanel = document.querySelector('#race-subrace-panel');
     const raceTemplate = document.querySelector('#box-races-template').content;
     const raceFragment = document.createDocumentFragment();
-
-    async function fetchData(endpoint){
-        const response = await fetch (apiURL +'/'+endpoint);
-        if (!response.ok) return []
-        const data = await response.json();
-        return data;
-}
     async function fetchToTemplate() {
     let raceResponse = await fetch('../data/character-race.json');
     let raceData = await raceResponse.json();
@@ -45,34 +52,85 @@ window.addEventListener('DOMContentLoaded',  fetchClassFromFile);
         raceTemplate.querySelector('img').src = item.imgURL;
         raceTemplate.querySelector('img').alt = item.index;
         raceTemplate.querySelector('p').textContent = item.name;
+      //  raceTemplate.querySelector('.race-info').textContent = item.name;
         const box = raceTemplate.cloneNode(true);
         raceFragment.appendChild(box);  
     });
         racePanel.appendChild(raceFragment);
     
+
+
+
 /**************************ALIGNMENT***************************************** */
     const alignmentTemplate = document.querySelector('#box-alignments-template').content; 
     const alignmentPanel = document.querySelector('#alignment-panel');
     const alignmentFragment = document.createDocumentFragment();
-
-    let alignmentResponse = await fetch('../data/character-alignments.json');
-    let alignmentData = await alignmentResponse.json();
+   // let alignmentResponse = await fetch('../data/character-alignments.json');
+  //  let alignmentData = await alignmentResponse.json();
     let dndAlignments = [];
+    let dndAligDetails = '';
 
-    fetchData('alignments').then((item)=>{
-        dndAlignments = item.results;
-        dndAlignments.forEach(item=>{
-            alignmentTemplate.querySelector('p').textContent = item.name;
-            alignmentData.forEach(element =>{
-                if(element.id === item.index){
-                    alignmentTemplate.querySelector('img').src = element.imgURL;
-                }
-            });
-            const alignmentBox = alignmentTemplate.cloneNode(true);
-            alignmentFragment.appendChild(alignmentBox); 
+    function fetchAlignments(){
+        fetchData('alignments')
+        .then(res =>res.json())
+        .then(data1=>{
+                data1.data.forEach(item=>{
+                alignmentTemplate.querySelector('p').textContent = item.name;
         });
-        alignmentPanel.appendChild(alignmentFragment);
-    });
+        return fetch("https://www.dnd5eapi.co/api/alignments/"+item.name);
+         })
+         .then(res =>res.json())
+         .then(data2=>{
+            data2.data.forEach(element =>{
+                alignmentTemplate.querySelector('.alignment-detail').textContent = element.desc;
+            });
+          });
+      }
+
+
+    // fetchData('alignments')
+    // .then((item)=>{
+    //      dndAlignments = item.results;
+    //      dndAlignments.forEach(item=>{
+    //         alignmentTemplate.querySelector('p').textContent = item.name;
+
+    //         fetchData('alignments/'+ item.index).then((element)=>{  
+    //         //    dndAligDetails = element;
+    //             console.log(element.desc);
+    //             alignmentTemplate.querySelector('.alignment-detail').textContent = element.desc;
+    //         });
+
+    //         const alignmentBox = alignmentTemplate.cloneNode(true);
+    //         alignmentFragment.appendChild(alignmentBox); 
+    //     });
+    //     alignmentPanel.appendChild(alignmentFragment);
+    // });
+
+
+
+
+    async function fetchDataFromFile(){
+
+        let response = await fetch('books7.json');
+        let data = await response.json();
+        let totalAmount=0;
+        const bookQuantity = 2;
+    
+        data.forEach((data)=>{
+          const price = data.price;
+          totalAmount+=(price*bookQuantity);
+        })
+        console.log(totalAmount);
+    }
+    
+    window.addEventListener('DOMContentLoaded',  fetchDataFromFile);
+
+ window.addEventListener('DOMContentLoaded',  fetchAlignments);
+
+
+
+
+
 
 /**************************SKILLS***************************************** */
 
@@ -131,3 +189,13 @@ function restar() {
     input.value = parseInt(input.value) - 1;
 }
 
+
+
+        // alignmentData.forEach(element =>{
+            //     if(element.id === item.index){
+            //         alignmentTemplate.querySelector('img').src = element.imgURL;
+            //     }
+            // });
+
+
+            
