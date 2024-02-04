@@ -8,8 +8,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    text-align: center;
 }
+
 
 @media (max-width: 1080px) {
 
@@ -164,7 +165,7 @@ h1,h2,h3{
     margin-top: 20px;
 }
    
-.check-circle {
+.character-info img {
     margin-right: 10px;
     width: 60px;
     height: 50px;
@@ -275,6 +276,8 @@ h1,h2,h3{
     height: same-as-width;
     margin:auto;
 }
+
+
 #welcome-panel{
     padding: 20px;
     justify-content: center;
@@ -326,9 +329,6 @@ h1,h2,h3{
     padding-right:8px;
     background-color:var(--panel-color);
     box-shadow: 0px 2px 2px 3px #bba1a1;
-    /* -webkit-transform:rotate(-2deg);
-    -o-transform:rotate(-2deg);
-    -moz-transform:rotate(-2deg); */
     width:150px;
     height:150px;
     margin: 10px;
@@ -413,4 +413,53 @@ h1,h2,h3{
 
 /* #endregion */
 
+/* #region MODAL */
+.modal-dialog p{
+    color: black;
+}
 
+#modal-race-img ,#modal-class-img  {
+background-color: black;
+border-radius: 25px;
+width: 160px;
+
+
+}
+/* #endregion */
+
+#dice-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ability-panel span{
+    background-color: white;
+    color: black;
+    width: 50px;
+} 
+
+#ability-panel {
+    display: none;
+    text-align: center;
+}
+
+#ability-container{
+    margin-top: 20px;
+}
+
+.dice{
+    width: 60px!important;
+    height: 60px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    font-size: 1.5rem;
+}
+
+#diceButton{
+    width: 80px;
+    margin: 30px;
+}

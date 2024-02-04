@@ -4,12 +4,6 @@
         "name": "Dragonborn",
         "imgURL":"../images/races/dragonborn.png"
       },
-      
-    {
-        "index": "drow",
-        "name": "Drow",
-        "imgURL":"../images/races/drow.png"
-      },
       {
         "index": "dwarf",
         "name": "Dwarf",
