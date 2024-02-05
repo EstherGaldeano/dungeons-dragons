@@ -86,8 +86,6 @@ raceData.forEach(item => {
     });
 
 
-
-
 /**************************SKILLS***************************************** */
 
     const skillsTemplate = document.querySelector('#box-skills-template').content;
@@ -247,16 +245,19 @@ async function showClassDetail(classesIndex){
 async function selectOptionClass(e){
     let className = document.getElementById('modal-name-class');
     let equipment = document.getElementById('equipment');
+    let profi = document.getElementById('profi');
+
     let navClass = document.getElementById('nav-class-name');
     let summaryClass = document.getElementById('summary-class');
-    let summaryEquip = document.getElementById('summary-equip');
     let summaryIMG = document.getElementById('summary-class-image');
+    
+    let summaryEquip = document.getElementById('summary-equip');
     let summaryProfi = document.getElementById('summary-profi');
 
     navClass.textContent = className.textContent;
     summaryEquip.textContent = equipment.textContent;
+    summaryProfi.textContent = profi.textContent;
     summaryClass.textContent = className.textContent;
-    summaryProfi.textContent = className.textContent;
 
     await fetch('../data/character-class.json').then(async (item) => {
         const classData = await item.json();
@@ -310,6 +311,13 @@ async function showClassDetail(classesIndex){
     });
 }
 
+
+function diceMovement(diceName){
+    diceIMG = document.getElementById(diceName);
+    diceIMG.src = '../images/icons/dice-green.png';
+    diceIMG.style='transform: rotate(30deg);';
+
+}
 
 
 //**************DICE BEHAVIOUR ***********************/
@@ -368,12 +376,12 @@ function clearDices(dices){
 }
 
 
-
-
-
-
-
 function diceDone(){
+    let STR = document.getElementById('td-STR');
+
+
+
+
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
     abilityStatus.textContent = 'Done';
