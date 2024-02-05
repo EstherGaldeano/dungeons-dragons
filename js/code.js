@@ -57,6 +57,7 @@ raceData.forEach(item => {
 
 
 /**************************ALIGNMENT***************************************** */
+
     const alignmentTemplate = document.querySelector('#box-alignments-template').content; 
     const alignmentPanel = document.querySelector('#alignment-panel');
     const alignmentFragment = document.createDocumentFragment();
@@ -64,22 +65,34 @@ raceData.forEach(item => {
     let alignmentResponse = await fetch('../data/character-alignments.json');
     let alignmentData = await alignmentResponse.json();
     let dndAlignments = [];
+    let alignDetails = [];
     let dndAligDetails = '';
 
-    fetchData('alignments').then((item)=>{
+    fetchData('alignments').then(async (item)=>{
         dndAlignments = item.results;
-        dndAlignments.forEach(item=>{
+        await dndAlignments.forEach(async item=>{
             alignmentTemplate.querySelector('p').textContent = item.name;
-            const alignmentBox = alignmentTemplate.cloneNode(true);
-            alignmentFragment.appendChild(alignmentBox); 
+            let desc = '';
+            await fetchData(item.url.substring(5,item.url.length)).then(async (element)=>{
+                desc = element.desc;
+                alignmentTemplate.querySelector('#alignment-detail').textContent = desc;
+                //  alignmentTemplate.querySelector('alignment-detail').textContent = item.desc;
+                  const alignmentBox = alignmentTemplate.cloneNode(true);
+                  alignmentFragment.appendChild(alignmentBox); 
+            });
+            alignmentPanel.appendChild(alignmentFragment);
         });
-        alignmentPanel.appendChild(alignmentFragment);
+        
     });
+
+
+
 
 /**************************SKILLS***************************************** */
 
     const skillsTemplate = document.querySelector('#box-skills-template').content;
     const skillsPanel = document.querySelector('#ability-panel');
+    const abilityContainer = document.querySelector('#ability-container');
     const skillsFragment = document.createDocumentFragment();
     let skillsDnD = [];
 
@@ -91,7 +104,7 @@ raceData.forEach(item => {
             const skillsBox = skillsTemplate.cloneNode(true);
             skillsFragment.appendChild(skillsBox);
             });
-        skillsPanel.appendChild(skillsFragment);
+        skillsPanel.insertBefore(skillsFragment, abilityContainer);
     });
 }
 
@@ -226,6 +239,7 @@ async function showClassDetail(classesIndex){
         hit.textContent=item.hit_die;
         profi.textContent = profiString;
         equipment.textContent = equipmentString;
+        
 
     });
 }
@@ -237,10 +251,12 @@ async function selectOptionClass(e){
     let summaryClass = document.getElementById('summary-class');
     let summaryEquip = document.getElementById('summary-equip');
     let summaryIMG = document.getElementById('summary-class-image');
+    let summaryProfi = document.getElementById('summary-profi');
 
     navClass.textContent = className.textContent;
     summaryEquip.textContent = equipment.textContent;
     summaryClass.textContent = className.textContent;
+    summaryProfi.textContent = className.textContent;
 
     await fetch('../data/character-class.json').then(async (item) => {
         const classData = await item.json();
@@ -252,7 +268,6 @@ async function selectOptionClass(e){
     });
 
     diceMovement('dice-class');
-
 }
 
 
@@ -260,24 +275,55 @@ function showModalAlign(e) {
     showAlignDetail(e.target.dataset.name);
 }
 
+async function showClassDetail(classesIndex){
+    fetchData('classes/'+classesIndex).then(async (item)=>{
+        let name = document.getElementById('modal-name-class');
+        let info = document.getElementById('info');
+        let hit = document.getElementById('hit');
+        let profi = document.getElementById('profi');
+        let equipment = document.getElementById('equipment');
+        let modalImage = document.getElementById('modal-class-img');
+        let profiString = "";
+        let equipmentString = "";
 
-function diceMovement(diceName){
-    diceIMG = document.getElementById(diceName);
-    diceIMG.src = '../images/icons/dice-green.png';
-    diceIMG.style='transform: rotate(30deg);';
+        item.proficiencies.map(item => {profiString += item.name + ", "});
+        profiString = profiString.substring(0, profiString.length-2);
 
+        item.starting_equipment.map(item => {equipmentString += item.equipment.name + ", "});
+        equipmentString = equipmentString.substring(0, equipmentString.length-2);
+
+        await fetch('../data/character-class.json').then(async (item) => {
+            const classData = await item.json();
+            classData.forEach(item =>{
+                if(item.name.toLowerCase()===classesIndex){
+                    info.textContent=item.information;
+                    modalImage.src=item.imgURL;
+                }
+            }); 
+        });
+        
+        name.textContent=item.name;
+        hit.textContent=item.hit_die;
+        profi.textContent = profiString;
+        equipment.textContent = equipmentString;
+
+    });
 }
 
 
+
+//**************DICE BEHAVIOUR ***********************/
+let timesRolled = 0;
 function rollDice(){
+let diceSum=0;
+let dices = []   
 let dice1= document.getElementById('dice1');
 let dice2= document.getElementById('dice2');
 let dice3= document.getElementById('dice3');
 let dice4= document.getElementById('dice4');
-let diceTotalInt = document.getElementById('diceTotal');
-
-let diceSum=0;
-let dices = []    
+let totalAfterDiscount = document.getElementById('dice-total');
+let diceButton = document.getElementById('diceButton');
+diceButton.disabled = true;
 
 
 for(i = 0; i < 4 ; i++){
@@ -288,20 +334,57 @@ for(i = 0; i < 4 ; i++){
 
 let minNum = Math.min(...dices);
 let minIndex = dices.indexOf(minNum); 
-
 let diceTotal = diceSum - minNum;
 
-diceTotalInt.textContent=diceTotal;
+totalAfterDiscount.style='background:white;';
 
-dice1.textContent = dices[0];
-dice2.textContent = dices[1];
-dice3.textContent = dices[2];
-dice4.textContent = dices[3];
 
-[dice1, dice2, dice3, dice4].forEach(dice => {
-    dice.style.backgroundColor = '';
+timesRolled++;
+
+[dice1, dice2, dice3, dice4,totalAfterDiscount].forEach(dice => {
+    dice.style='transform: rotate('+timesRolled * 360+'deg);';
 });
+setTimeout(() => {resetRoll(diceButton,totalAfterDiscount,diceTotal)},1000);
+setTimeout(() => {clearDices(dices)},500);
+[dice1, dice2, dice3, dice4][minIndex].style.backgroundColor = 'black';
+[dice1, dice2, dice3, dice4][minIndex].style.color = 'white';
+totalAfterDiscount.style='background:lightgreen;';
 
-[dice1, dice2, dice3, dice4][minIndex].style.backgroundColor = 'grey';
+}
+function resetRoll(diceButton,totalAfterDiscount,diceTotal) {
+    diceButton.disabled = false;
+    totalAfterDiscount.textContent=diceTotal;
+}
 
+function clearDices(dices){
+    let dice1= document.getElementById('dice1');
+    let dice2= document.getElementById('dice2');
+    let dice3= document.getElementById('dice3');
+    let dice4= document.getElementById('dice4');
+    dice1.textContent = dices[0];
+    dice2.textContent = dices[1];
+    dice3.textContent = dices[2];
+    dice4.textContent = dices[3];
+}
+
+
+
+
+
+
+
+function diceDone(){
+    diceMovement('dice-ability');
+    let abilityStatus = document.getElementById('ability-pending');
+    abilityStatus.textContent = 'Done';
+}
+
+function avatarDone(){
+    diceMovement('dice-avatar');
+    let avatarStatus = document.getElementById('avatar-pending');
+    avatarStatus.textContent = 'Done';
+}
+
+function alignDone(){
+    diceMovement('dice-align');
 }

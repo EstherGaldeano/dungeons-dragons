@@ -12,11 +12,16 @@
     <script src="../js/code.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Nova+Cut&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <container>
+
+   
     <header class="header">
         <div class="header-container">
         </div>
@@ -59,7 +64,7 @@
 
                     <div class="character-details" id="align">
                         <h3 class="info-title">Alignment</h3>
-                        <p class="info-selected">Chaotic Evil</p>
+                        <p id="align-pending" class="info-selected">Chaotic Evil</p>
                     </div>
                 </div>
 
@@ -69,7 +74,7 @@
 
                     <div class="character-details" id="skills">
                         <h3 class="info-title">Ability</h3>
-                        <p class="info-selected">Done</p>
+                        <p id="ability-pending" class="info-selected">Pending</p>
                     </div>
                 </div>
 
@@ -78,7 +83,7 @@
 
                     <div class="character-details" id="avatar">
                         <h3 class="info-title">Avatar</h3>
-                        <p class="info-selected">Done</p>
+                        <p id="avatar-pending" class="info-selected">Pending</p>
                     </div>
                 </div>
 
@@ -100,11 +105,13 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, urna a tempus
                             consectetur, orci sem hendrerit leo, eget aliquet lorem ligula quis ligula. Nam id dolor
                             ipsum.
-                         </p>
+                        </p>
 
-                            <label for="inputName"></label>
-                            <input type="text" class="form-name" id="inputName" placeholder="Tav" onkeyup="nameButtonDisabled()">
-                            <button type="button" id="nameButton" class="btn btn-primary" onclick="clickInputWelcome()" disabled>Enviar</button>          
+                        <label for="inputName"></label>
+                        <input type="text" class="form-name" id="inputName" placeholder="Tav"
+                            onkeyup="nameButtonDisabled()">
+                        <button type="button" id="nameButton" class="btn btn-primary" onclick="clickInputWelcome()"
+                            disabled>Done</button>
                     </div>
 
                     <!-- ************************************************** CLASS **************************************************-->
@@ -127,22 +134,25 @@
                     <!-- ************************************************** ABILITY **************************************************-->
 
                     <div id="ability-panel" style="display:none">
-                        
-                        <h1> ABILITY PANEL</h1>
 
+                        <h1> ABILITY PANEL</h1>
+                        <!--- Aqui se meten los input --->
                         <div id="ability-container">
+                            <h1>DADIÑOS</h1>
                             <div id="dice-container">
                                 <span class="dice" id="dice1">0</span>
                                 <span class="dice" id="dice2">0</span>
                                 <span class="dice" id="dice3">0</span>
                                 <span class="dice" id="dice4">0</span>
                                 <span class="dice" id="igualA">=</span>
-                                <span class="dice" id="diceTotal">0</span>
+                                <span class="dice" id="dice-total">0</span>
                             </div>
 
-                        <button type="button" id="diceButton" class="btn btn-primary" onclick="rollDice()">Roll the Dices</button> 
+                            <button type="button" id="diceButton" class="btn btn-primary"
+                                onclick="rollDice()">Roll</button>
                         </div>
-
+                        <button type="button" id="skillsDoneButton" class="btn btn-primary"
+                            onclick="diceDone()">Done</button>
                     </div>
 
                     <!-- ************************************************** AVATAR **************************************************-->
@@ -153,16 +163,16 @@
                             <input class="form-control" id="formFileLg" type="file">
                             <div class="form-check">
                                 <input class="form-avatar-input" type="checkbox" value="" id="avatar-option">
-                                    <label class="avatar-label" for="checkAvatar">
-                                        I prefer it without avatar, thanks
-                                    </label>
-                              </div>
+                                <label class="avatar-label" for="checkAvatar">
+                                    I prefer it without avatar, thanks
+                                </label>
+                            </div>
 
-                              <button type="button" class="btn btn-secondary">Enviar</button> 
-                          </div>
+                            <button type="button" class="btn btn-secondary"onclick="avatarDone()">Done</button>
+                        </div>
                     </div>
 
-                   
+
                 </div>
 
                 <!-- <div class="btn-container">
@@ -173,41 +183,38 @@
             <div class="summary">
                 <br>
                 <h3 id="summary-name" class="text">Summary</h3>
-                <img id="summary-class-image" class="class-avatar" src="../images/classes/rogue.webp" class="card-img-top" alt="...">
+                <img id="summary-class-image" class="class-avatar" src="../images/classes/rogue.webp"
+                    class="card-img-top" alt="...">
                 <h4 id="summary-race" class="text">Tiefling</h>
-                <h4 id="summary-class" class="text">Level 1 Rogue</h4>
-                <p id="summary-equip" class="card-text"></p>
-                <table class="table text-center overflow-hidden">
-                    <thead>
-                        <tr>
-                            <th>STR</th>
-                            <th>DEX</th>
-                            <th>CON</th>
-                            <th>INT</th>
-                            <th>WIS</th>
-                            <th>CHA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="td">20</td>
-                            <td class="td">20</td>
-                            <td class="td">20</td>
-                            <td class="td">20</td>
-                            <td class="td">20</td>
-                            <td class="td">20</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- <h3 class="text">More Details</h3>
-                <p class="card-text">bla bla bla</p> -->
-
-                <div class="avatar-card">
-                    <h3 class="text">Your Avatar</h3>
-                    <img id="user-avatar" src="../images/others/discord-logo.png " alt="user-avatar">         
-                </div>
-                <!-- <button type="button" class="btn btn-dark btn-lg sendButton">Save Character</button> -->
-                <!-- <button type="button" class="btn btn-dark btn-lg sendButton disabled">Print Character Sheet</button> -->
+                    <h4 id="summary-class" class="text">Level 1 Rogue</h4>
+                    <p id="summary-equip" class="card-text"></p>
+                    <p id="summary-profi"></p>
+                    <table class="table text-center overflow-hidden">
+                        <thead>
+                            <tr>
+                                <th>STR</th>
+                                <th>DEX</th>
+                                <th>CON</th>
+                                <th>INT</th>
+                                <th>WIS</th>
+                                <th>CHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td">20</td>
+                                <td class="td">20</td>
+                                <td class="td">20</td>
+                                <td class="td">20</td>
+                                <td class="td">20</td>
+                                <td class="td">20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="avatar-card">
+                        <h3 class="text">Your Avatar</h3>
+                        <img id="user-avatar" src="../images/others/discord-logo.png " alt="user-avatar">
+                    </div>
             </div>
         </div>
     </div>
@@ -216,8 +223,6 @@
     <!-- <footer class="container-footer">
     
     </footer> -->
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -228,7 +233,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
-
+ </container>
 </body>
 
 <!-- TEMPLATES -->
@@ -238,7 +243,8 @@
     <div class="box-race">
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
-        <button type="button" class="btn btn-light" id="button-race" data-bs-toggle="modal" data-bs-target="#myModalRace" onclick="showModalRace(event)">Detalle</button>
+        <button type="button" class="btn btn-light" id="button-race" data-bs-toggle="modal"
+            data-bs-target="#myModalRace" onclick="showModalRace(event)">Detalle</button>
     </div>
 </template>
 
@@ -246,7 +252,8 @@
     <div class="box">
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
-        <button type="button" class="btn btn-light" id="button-class" data-bs-toggle="modal" data-bs-target="#myModalClass" onclick="showModalClass(event)">Detalle</button>
+        <button type="button" class="btn btn-light" id="button-class" data-bs-toggle="modal"
+            data-bs-target="#myModalClass" onclick="showModalClass(event)">Detalle</button>
     </div>
 </template>
 
@@ -256,78 +263,76 @@
             <img class="align-img" alt="---imageAlt---">
         </div> -->
         <p class="panel-options"></p>
-        <p class="alignment-detail"></p>
-        <button type="button" class="btn btn-light" id="button-align" data-bs-toggle="modal" data-bs-target="#myModalAlign" onclick="showModalAlign(event)">Detalle</button>
+        <p id="alignment-detail"></p>
+        <button type="button" id="nameButton" class="btn btn-primary" onclick="alignDone()">Select</button>
     </div>
 </template>
 
 <template id="box-skills-template">
     <div class=" skills-container input-group mb-3">
         <span class="input-group-text"></span>
-        <input type="number"
-            step="1"
-            min="8"
-            max="20"
-            id="numeroInput" 
-            class="form-control" value="8">
+        <input type="number" step="1" min="8" max="20" id="numeroInput" class="form-control" value="8">
     </div>
+
 </template>
-    
+
 
 <div class="modal modal-lg fade" id="myModalRace">
     <div class="modal-dialog">
-            <img id="modal-race-img" src="" alt="">
-            <p id="modal-name-race"></p> <br>
-            <p id="speed"></p><br>
-            <p id="age"></p><br>
-            <p id="alignment"></p><br>
-            <p id="size"></p><br>  
-    <div class="modal-content">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="selectOptionRace(event)">Seleccionar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <img id="modal-race-img" src="" alt="">
+        <p id="modal-name-race"></p> <br>
+        <p id="speed"></p><br>
+        <p id="age"></p><br>
+        <p id="alignment"></p><br>
+        <p id="size"></p><br>
+        <div class="modal-content">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                onclick="selectOptionRace(event)">Seleccionar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
     </div>
 </div>
-</div>
-    
 
-  <div class="modal modal-lg fade" id="myModalClass">
+
+<div class="modal modal-lg fade" id="myModalClass">
     <div class="modal-dialog">
         <img id="modal-class-img" src="" alt="">
         <p id="modal-name-class"></p> <br>
         <p id="info"></p> <br>
         <p id="hit"></p><br>
         <p id="profi"></p><br>
-        <p id="equipment"></p><br>   
-    
-       <div class="modal-content">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="selectOptionClass(event)">Seleccionar</button>
+        <p id="equipment"></p><br>
+
+        <div class="modal-content">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                onclick="selectOptionClass(event)">Seleccionar</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
     </div>
-  </div>
+</div>
 
-  <div class="modal modal-lg fade" id="myModalAlign">
+<div class="modal modal-lg fade" id="myModalAlign">
     <div class="modal-dialog">
-      <div class="modal-content1">
-        <div class="modal-header">
+        <div class="modal-content1">
+            <div class="modal-header">
+            </div>
+            <div id="modal-content" class="modal-body bg-dark">
+                <!-- Contenido del modal para el Elemento 2 -->
+                <p id="modal-name-align"></p> <br>
+                <p id="align-name"></p><br>
+                <p id="align-desc"></p><br>
+            </div>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                onclick="selectOption(event)">Seleccionar</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
-        <div id="modal-content" class="modal-body bg-dark">
-          <!-- Contenido del modal para el Elemento 2 -->
-          <p id="modal-name-align"></p> <br>
-          <p id="speed"></p><br>
-          <p id="age"></p><br>
-          <p id="alignment"></p><br>
-          <p id="size"></p><br>
-        </div>
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="selectOption(event)">Seleccionar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
+</div>
 
 
 
-  </div>
+</div>
 
 <!-- <div> Iconos diseñados por <a href="https://www.flaticon.es/autores/amethyst-prime" title="Amethyst prime"> Amethyst prime </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div> -->
+
 </html>
