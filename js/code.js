@@ -58,32 +58,31 @@ raceData.forEach(item => {
 
 /**************************ALIGNMENT***************************************** */
 
-    const alignmentTemplate = document.querySelector('#box-alignments-template').content; 
-    const alignmentPanel = document.querySelector('#alignment-panel');
-    const alignmentFragment = document.createDocumentFragment();
+    // const alignmentTemplate = document.querySelector('#box-alignments-template').content; 
+    // const alignmentPanel = document.querySelector('#alignment-panel');
+    // const alignmentFragment = document.createDocumentFragment();
 
-    let alignmentResponse = await fetch('../data/character-alignments.json');
-    let alignmentData = await alignmentResponse.json();
-    let dndAlignments = [];
-    let alignDetails = [];
-    let dndAligDetails = '';
+    // let alignmentResponse = await fetch('../data/character-alignments.json');
+    // let alignmentData = await alignmentResponse.json();
+    // let dndAlignments = [];
+    // let alignDetails = [];
+    // let dndAligDetails = '';
 
-    fetchData('alignments').then(async (item)=>{
-        dndAlignments = item.results;
-        await dndAlignments.forEach(async item=>{
-            alignmentTemplate.querySelector('p').textContent = item.name;
-            let desc = '';
-            await fetchData(item.url.substring(5,item.url.length)).then(async (element)=>{
-                desc = element.desc;
-                alignmentTemplate.querySelector('#alignment-detail').textContent = desc;
-                //  alignmentTemplate.querySelector('alignment-detail').textContent = item.desc;
-                  const alignmentBox = alignmentTemplate.cloneNode(true);
-                  alignmentFragment.appendChild(alignmentBox); 
-            });
-            alignmentPanel.appendChild(alignmentFragment);
-        });
-        
-    });
+    // fetchData('alignments').then(async (item)=>{
+    //     dndAlignments = item.results;
+    //     await dndAlignments.forEach(async item=>{
+           
+    //         let desc = '';
+    //         await fetchData(item.url.substring(5,item.url.length)).then(async (element)=>{
+    //             desc = element.desc;
+    //             alignmentTemplate.querySelector('p').textContent = element.name;
+    //             alignmentTemplate.querySelector('#alignment-detail').textContent = desc;
+    //             const alignmentBox = alignmentTemplate.cloneNode(true);
+    //             alignmentFragment.appendChild(alignmentBox); 
+    //         });
+    //         alignmentPanel.appendChild(alignmentFragment);
+    //     });
+    // });
 
 
 /**************************SKILLS***************************************** */
@@ -128,6 +127,7 @@ function changeCentralPanel(panelId) {
        // document.getElementById(panelId + '-panel').style.width ='80vh';
 
     }   
+
 }
 
 
@@ -154,11 +154,6 @@ nameSummary.textContent = nameInput.value;
 diceMovement('dice-welcome');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchToTemplate();
-});
-
-
 function showModalRace(e) {
     showRaceDetail(e.target.dataset.name);
 }
@@ -183,10 +178,10 @@ async function showRaceDetail(raceIndex){
         });
 
         name.textContent=item.name;
-        speed.textContent=item.speed;
-        age.textContent=item.age;
-        alignment.textContent=item.alignment;
-        size.textContent=item.size;
+        speed.textContent='SPEED: '+item.speed;
+        age.textContent= 'AGE: '+item.age;
+        alignment.textContent='ALIGNMENT: ' +item.alignment;
+        size.textContent='SIZE: '+item.size;
 
     });
 }
@@ -234,9 +229,9 @@ async function showClassDetail(classesIndex){
         });
         
         name.textContent=item.name;
-        hit.textContent=item.hit_die;
-        profi.textContent = profiString;
-        equipment.textContent = equipmentString;
+        hit.textContent='HIT DIE: '+item.hit_die;
+        profi.textContent = 'PROFICIENCY: '+profiString;
+        equipment.textContent = 'EQUIPMENT: '+equipmentString;
         
 
     });
@@ -274,41 +269,6 @@ async function selectOptionClass(e){
 
 function showModalAlign(e) {
     showAlignDetail(e.target.dataset.name);
-}
-
-async function showClassDetail(classesIndex){
-    fetchData('classes/'+classesIndex).then(async (item)=>{
-        let name = document.getElementById('modal-name-class');
-        let info = document.getElementById('info');
-        let hit = document.getElementById('hit');
-        let profi = document.getElementById('profi');
-        let equipment = document.getElementById('equipment');
-        let modalImage = document.getElementById('modal-class-img');
-        let profiString = "";
-        let equipmentString = "";
-
-        item.proficiencies.map(item => {profiString += item.name + ", "});
-        profiString = profiString.substring(0, profiString.length-2);
-
-        item.starting_equipment.map(item => {equipmentString += item.equipment.name + ", "});
-        equipmentString = equipmentString.substring(0, equipmentString.length-2);
-
-        await fetch('../data/character-class.json').then(async (item) => {
-            const classData = await item.json();
-            classData.forEach(item =>{
-                if(item.name.toLowerCase()===classesIndex){
-                    info.textContent=item.information;
-                    modalImage.src=item.imgURL;
-                }
-            }); 
-        });
-        
-        name.textContent=item.name;
-        hit.textContent=item.hit_die;
-        profi.textContent = profiString;
-        equipment.textContent = equipmentString;
-
-    });
 }
 
 
@@ -377,10 +337,7 @@ function clearDices(dices){
 
 
 function diceDone(){
-    let STR = document.getElementById('td-STR');
-
-
-
+   // let STR = document.getElementById('td-STR');
 
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
@@ -396,3 +353,25 @@ function avatarDone(){
 function alignDone(){
     diceMovement('dice-align');
 }
+
+
+
+function selectAlignment(){
+    let clickableCells = document.querySelectorAll('.selection');
+
+    clickableCells.forEach(function(cell) {
+        cell.addEventListener('click', function() {
+    
+            // Aquí puedes realizar la acción que desees al hacer clic en la celda
+        });
+    });
+
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchToTemplate();
+    selectAlignment();
+});

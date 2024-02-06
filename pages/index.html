@@ -16,6 +16,9 @@
         href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Nova+Cut&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -93,7 +96,7 @@
                 </ul>
             </div>
         </div>
-
+     
         <!-- CENTRAL PANEL -->
         <div class="col-lg-6">
             <section class="central-panel">
@@ -103,15 +106,13 @@
 
                         <h1>WELCOME</h1>
                         <h2>Welcome to our D&D character creator</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus, urna a tempus
-                            consectetur, orci sem hendrerit leo, eget aliquet lorem ligula quis ligula. Nam id dolor
-                            ipsum.
+                        <p>Here you can create you D&D Character ready to use in your role games with your friends. First of all enter your character name
                         </p>
 
                         <label for="inputName"></label>
                         <input type="text" class="form-name" id="inputName" placeholder="Tav"
                             onkeyup="nameButtonDisabled()">
-                        <button type="button" id="nameButton" class="btn btn-primary" onclick="clickInputWelcome()"
+                        <button type="button" id="nameButton" class="btn btn-light" onclick="clickInputWelcome()"
                             disabled>Done</button>
                     </div>
 
@@ -131,6 +132,40 @@
 
                     <div id="alignment-panel" style="display:none">
                         <!-- <button type="button" class="btn btn-secondary">Select</button>  -->
+                        <div class="container mt-5">
+                            <h1 class="mb-4">Choose your alignment</h1>
+                            <table class="table-align table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Lawful</th>
+                                        <th>Neutral</th>
+                                        <th>Chaotic</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Good</th>
+                                        <td class="selection">Lawful good</td>
+                                        <td class="selection">Neutral good</td>
+                                        <td class="selection">Chaotic good</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Neutral</th>
+                                        <td class="selection">Lawful neutral</td>
+                                        <td class="selection">(True) neutral</td>
+                                        <td class="selection">Chaotic neutral</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Evil</th>
+                                        <td class="selection">Lawful evil</td>
+                                        <td class="selection">Neutral evil</td>
+                                        <td class="selection">Chaotic evil</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                
                     </div>
                     <!-- ************************************************** ABILITY **************************************************-->
 
@@ -140,6 +175,8 @@
                         <!--- Aqui se meten los input --->
                         <div id="ability-container">
                             <h1>DADIÑOS</h1>
+                            <p>If you want you can use our dices to decide your ability points </p>
+                            <p>The lesser number will not be included in the sum</p>
                             <div id="dice-container">
                                 <span class="dice" id="dice1">0</span>
                                 <span class="dice" id="dice2">0</span>
@@ -149,10 +186,10 @@
                                 <span class="dice" id="dice-total">0</span>
                             </div>
 
-                            <button type="button" id="diceButton" class="btn btn-primary"
+                            <button type="button" id="diceButton" class="btn btn-info"
                                 onclick="rollDice()">Roll</button>
                         </div>
-                        <button type="button" id="skillsDoneButton" class="btn btn-primary"
+                        <button type="button" id="skillsDoneButton" class="btn btn-light"
                             onclick="diceDone()">Done</button>
                     </div>
 
@@ -186,10 +223,11 @@
                 <h3 id="summary-name" class="text">Summary</h3>
                 <img id="summary-class-image" class="class-avatar" src="../images/classes/rogue.webp"
                     class="card-img-top" alt="...">
-                <h4 id="summary-race" class="text">Tiefling</h>
-                    <h4 id="summary-class" class="text">Level 1 Rogue</h4>
-                    <p id="summary-equip" class="card-text"></p>
-                    <p id="summary-profi"></p>
+                <h3 id="summary-race" class="text">Tiefling</h3>
+                    <h3 id="summary-class" class="text">Level 1 Rogue</h3>
+                    <h3 id="summary-alignment"> </h3>
+                    <p id="summary-equip" class="card-text">EQUIPMENT: Leather Armor, Dagger, Thieves' Tools</p>
+                    <p id="summary-profi">PROFICIENCY: Light Armor, Simple Weapons, Longswords, Rapiers, Shortswords, Hand crossbows, Thieves' Tools, Saving Throw: DEX, Saving Throw: INT</p>
                     <table class="table text-center overflow-hidden">
                         <thead>
                             <tr>
@@ -259,14 +297,17 @@
 </template>
 
 <template id="box-alignments-template">
-    <div class="box-alignment">
-        <!-- <div class="img-box">
-            <img class="align-img" alt="---imageAlt---">
-        </div> -->
-        <p class="panel-options"></p>
+
+
+    
+    <!-- <div id="alignment-box" class="box-alignment" >
+
+        <div id="align-content">
+        <h3 id="align-name-temp" class="panel-options"></h3>
         <p id="alignment-detail"></p>
-        <button type="button" id="nameButton" class="btn btn-primary" onclick="alignDone()">Select</button>
-    </div>
+        </div>
+        <button type="button" id="nameButton" class="btn btn-light" onclick="alignDone()">Select</button>
+    </div> -->
 </template>
 
 <template id="box-skills-template">
@@ -288,8 +329,8 @@
         <p id="size"></p><br>
         <div class="modal-content">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                onclick="selectOptionRace(event)">Seleccionar</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                onclick="selectOptionRace(event)">SELECCIONAR</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
@@ -306,8 +347,8 @@
 
         <div class="modal-content">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                onclick="selectOptionClass(event)">Seleccionar</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                onclick="selectOptionClass(event)">SELECCIONAR</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
@@ -323,9 +364,9 @@
                 <p id="align-name"></p><br>
                 <p id="align-desc"></p><br>
             </div>
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                onclick="selectOption(event)">Seleccionar</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="align-button" class="btn btn-success" data-bs-dismiss="modal"
+                onclick="selectOption(event)">SELECCIONAR</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
