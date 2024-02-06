@@ -342,9 +342,6 @@ function diceDone(){
         abilitiesToSet.querySelector('#td-'+abilityShortId).textContent = ability;
     }
 
-
-
-
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
     abilityStatus.textContent = 'Done';
@@ -366,8 +363,6 @@ function alignDone(){
     navAlignment=true;
     showPdfButton();
 }
-
-
 
 function selectAlignment(e){
     let clickableCells = document.querySelectorAll('.selection');
@@ -425,6 +420,4 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchToTemplate();
     selectAlignment();
     attachImage();
-    //showPdfButton();
-    
 });

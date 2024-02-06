@@ -576,9 +576,12 @@ margin-bottom: 20px;
     width: 80px;
     margin-bottom: 30px;
     margin-top: 20px;
+    transition: transform .7s ease-in-out;
 }
 
 #welcome-dice:hover{
+    transform: rotate(360deg);
+    cursor: pointer;
 
 }
 
