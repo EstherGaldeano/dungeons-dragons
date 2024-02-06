@@ -8,6 +8,7 @@ async function fetchData(endpoint){
     return data;
 }
 
+
 /**************************CLASES***************************************** */
 const classPanel = document.querySelector('#class-panel');
 const template = document.querySelector('#box-classes-template').content;
@@ -54,37 +55,6 @@ raceData.forEach(item => {
     racePanel.appendChild(raceFragment);
 
 
-
-
-/**************************ALIGNMENT***************************************** */
-
-    // const alignmentTemplate = document.querySelector('#box-alignments-template').content; 
-    // const alignmentPanel = document.querySelector('#alignment-panel');
-    // const alignmentFragment = document.createDocumentFragment();
-
-    // let alignmentResponse = await fetch('../data/character-alignments.json');
-    // let alignmentData = await alignmentResponse.json();
-    // let dndAlignments = [];
-    // let alignDetails = [];
-    // let dndAligDetails = '';
-
-    // fetchData('alignments').then(async (item)=>{
-    //     dndAlignments = item.results;
-    //     await dndAlignments.forEach(async item=>{
-           
-    //         let desc = '';
-    //         await fetchData(item.url.substring(5,item.url.length)).then(async (element)=>{
-    //             desc = element.desc;
-    //             alignmentTemplate.querySelector('p').textContent = element.name;
-    //             alignmentTemplate.querySelector('#alignment-detail').textContent = desc;
-    //             const alignmentBox = alignmentTemplate.cloneNode(true);
-    //             alignmentFragment.appendChild(alignmentBox); 
-    //         });
-    //         alignmentPanel.appendChild(alignmentFragment);
-    //     });
-    // });
-
-
 /**************************SKILLS***************************************** */
 
     const skillsTemplate = document.querySelector('#box-skills-template').content;
@@ -113,9 +83,9 @@ function changeCentralPanel(panelId) {
     let charInfoList = document.getElementsByClassName('character-info');
     for(let charInfo of charInfoList) {
         if(charInfo.dataset.set === panelId) {
-            charInfo.style.backgroundColor = 'red'; // element.classList.add("mystyle");
+            charInfo.style.backgroundColor = 'grey'; // element.classList.add("mystyle");
         }else {
-            charInfo.style.backgroundColor = 'green'; // element.classList.remove("mystyle");        
+            charInfo.style.backgroundColor = '#302c2c'; // element.classList.remove("mystyle");        
         }
     }
     // Ocultar todos los paneles centrales
@@ -161,7 +131,10 @@ let nameInput = document.getElementById('inputName');
 nameSelected.textContent = nameInput.value;
 nameSummary.textContent = nameInput.value;
 
+
 diceMovement('dice-welcome');
+navWelcome=true;
+showPdfButton();
 }
 
 function showModalRace(e) {
@@ -204,6 +177,8 @@ function selectOptionRace(e){
     navRace.textContent = raceName.textContent;
     summaryRace.textContent = raceName.textContent;
     diceMovement('dice-race');
+    navRaceOK=true;
+    showPdfButton();
 }
 
 
@@ -263,6 +238,8 @@ async function selectOptionClass(e){
     summaryEquip.textContent = equipment.textContent;
     summaryProfi.textContent = profi.textContent;
     summaryClass.textContent = className.textContent;
+    navClasses=true;
+    showPdfButton();
 
     await fetch('../data/character-class.json').then(async (item) => {
         const classData = await item.json();
@@ -301,7 +278,6 @@ let dice3= document.getElementById('dice3');
 let dice4= document.getElementById('dice4');
 let totalAfterDiscount = document.getElementById('dice-total');
 let diceButton = document.getElementById('diceButton');
-diceButton.disabled = true;
 
 
 for(i = 0; i < 4 ; i++){
@@ -331,17 +307,15 @@ setTimeout(() => {clearDices(dices)},500);
 [dice1, dice2, dice3, dice4][minIndex].style.color = 'white';
 totalAfterDiscount.style='background:lightgreen;';
 setTimeout(() => {
-    if(setValue) {
-    
+    if(setValue) { 
         document.getElementById('numeroInput'+e.target.dataset.ability).value = totalAfterDiscount.textContent;
     }
 },1000);
 
 }
 
-
 function resetRoll(diceButton,totalAfterDiscount,diceTotal) {
-    diceButton.disabled = false;
+    //diceButton.disabled = false;
     totalAfterDiscount.textContent=diceTotal;
 }
 
@@ -374,16 +348,23 @@ function diceDone(){
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
     abilityStatus.textContent = 'Done';
+    navAbility=true;
+    showPdfButton();
 }
 
 function avatarDone(){
     diceMovement('dice-avatar');
     let avatarStatus = document.getElementById('avatar-pending');
     avatarStatus.textContent = 'Done';
+    navAvatar=true;
+    showPdfButton();
+    
 }
 
 function alignDone(){
     diceMovement('dice-align');
+    navAlignment=true;
+    showPdfButton();
 }
 
 
@@ -405,7 +386,6 @@ function selectAlignment(e){
 
 function changeAvatar(elem) {
     console.log(elem)
-    debugger;
 }
 
 function attachImage(){
@@ -424,10 +404,27 @@ function attachImage(){
     }
 }
 
+let navWelcome = false;
+let navRaceOK = false;
+let navClasses = false;
+let navAlignment = false;
+let navAbility = false;
+let navAvatar =  false;
+
+
+function showPdfButton(){
+    let pdfButton=document.getElementById('print-pdf-button');
+    console.log(navWelcome , navRaceOK , navClasses , navAlignment , navAbility , navAvatar);
+    if(navWelcome && navRaceOK && navClasses && navAlignment && navAbility && navAvatar){      
+        pdfButton.hidden = false;
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchToTemplate();
     selectAlignment();
     attachImage();
-
+    //showPdfButton();
+    
 });

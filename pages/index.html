@@ -103,8 +103,8 @@
                         </div>
                     </div>
 
-                    <div id="print-pdf-button" class="character-info" data-set="print">
-                        <img id="dice-avatar" src="../images/icons/dice-red.png" alt="avatar1">
+                    <div id="print-pdf-button" hidden  class="character-info" data-set="print">
+                        <img id="dice-avatar" src="../images/icons/header-dice.png" alt="avatar1">
 
                         <div class="character-details" id="avatar">
                             <h2 class="info-title">Download As PDF</h2>
@@ -212,11 +212,8 @@
                                     <span class="dice" id="igualA">=</span>
                                     <span class="dice" id="dice-total">0</span>
                                 </div>
-
-                                <!-- <button type="button" id="diceButton" class="btn btn-info"
-                                onclick="rollDice(event)">Roll</button> -->
                             </div>
-                            <button type="button" id="skillsDoneButton" class="btn btn-light"
+                            <button type="button" id="skills-done-button" class="btn btn-light"
                                 onclick="diceDone()">Done</button>
                         </div>
 
@@ -229,8 +226,6 @@
                                 <input class="form-control" id="formFileLg" type="file" accept="image/png, image/jpeg"
                                     onchange="changeAvatar(this)">
                                 <small>If you don't upload an image you will have the default one</small>
-                                <!-- <p id="preview-text">Preview</p>
-                                <img id="avatar-preview" src="../images/others/logoDND.png" alt="">           -->
                             </div>
                             <button type="button" class="btn btn-secondary noAvatarButton"
                                 onclick="avatarDone()">Done</button>
@@ -385,10 +380,6 @@
     </div>
 </div>
 
-
-
 </div>
-
-<!-- <div> Iconos diseñados por <a href="https://www.flaticon.es/autores/amethyst-prime" title="Amethyst prime"> Amethyst prime </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div> -->
 
 </html>
