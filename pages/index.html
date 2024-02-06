@@ -17,218 +17,245 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Nova+Cut&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Varela+Round&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap"
+        rel="stylesheet">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="../js/printPdf.js" type="module"></script>
 </head>
 
 <body>
     <container>
-
-   
-    <header class="header">
-        <div class="header-container">
-        </div>
-    </header>
-
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="character-selection text-white">
-                <h2 class="character-title">Character Information</h2>
-                
-
-                <div class="character-info" onclick=" changeCentralPanel('welcome')">
-                    <img id="dice-welcome" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="name">
-                        <h3 class="info-title">Name</h3>
-                        <p id="info-name" class="info-selected">Nyx</p>
-                    </div>
-                </div>
-
-                <div class="character-info" onclick=" changeCentralPanel('race-subrace')">
-                    <img id="dice-race" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="race">
-                        <h3 class="info-title">Race</h3>
-                        <p id="nav-race-name" class="info-selected">Tiefling</p>
-                    </div>
-                </div>
-
-                <div class="character-info" onclick=" changeCentralPanel('class')">
-                    <img id="dice-class" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="class">
-                        <h3 class="info-title">Class</h3>
-                        <p id="nav-class-name" class="info-selected">Rogue</p>
-                    </div>
-                </div>
-
-                <div class="character-info" onclick=" changeCentralPanel('alignment')">
-                    <img id="dice-align" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="align">
-                        <h3 class="info-title">Alignment</h3>
-                        <p id="align-pending" class="info-selected">Chaotic Evil</p>
-                    </div>
-                </div>
-
-
-                <div class="character-info" onclick=" changeCentralPanel('ability')">
-                    <img id="dice-ability" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="skills">
-                        <h3 class="info-title">Ability</h3>
-                        <p id="ability-pending" class="info-selected">Pending</p>
-                    </div>
-                </div>
-
-                <div class="character-info" onclick=" changeCentralPanel('avatar')">
-                    <img id="dice-avatar" src="../images/icons/dice-red.png" alt="avatar1">
-
-                    <div class="character-details" id="avatar">
-                        <h3 class="info-title">Avatar</h3>
-                        <p id="avatar-pending" class="info-selected">Pending</p>
-                    </div>
-                </div>
-
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li id="class-list" class="list-classes">
-                </ul>
+        <header class="header">
+            <div class="header-container">
             </div>
-        </div>
-     
-        <!-- CENTRAL PANEL -->
-        <div class="col-lg-6">
-            <section class="central-panel">
-                <div class="container-central-panel">
-                    <!-- ************************************************** WELCOME **************************************************-->
-                    <div id="welcome-panel">
+        </header>
 
-                        <h1>WELCOME</h1>
-                        <h2>Welcome to our D&D character creator</h2>
-                        <p>Here you can create you D&D Character ready to use in your role games with your friends. First of all enter your character name
-                        </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="character-selection text-white">
+                    <h1 class="character-title">Character Information</h1>
 
-                        <label for="inputName"></label>
-                        <input type="text" class="form-name" id="inputName" placeholder="Tav"
-                            onkeyup="nameButtonDisabled()">
-                        <button type="button" id="nameButton" class="btn btn-light" onclick="clickInputWelcome()"
-                            disabled>Done</button>
-                    </div>
 
-                    <!-- ************************************************** CLASS **************************************************-->
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="welcome">
+                        <img id="dice-welcome" src="../images/icons/dice-red.png" alt="avatar1">
 
-                    <div id="class-panel" style="display:none">
-                        <!-- <button type="button" class="btn btn-secondary">Select</button> -->
-                    </div>
-
-                    <!-- ****************************************************** RACE **************************************************-->
-
-                    <div id="race-subrace-panel" style="display:none">
-                        <!-- <button type="button" class="btn btn-secondary">Select</button> -->
-                    </div>
-
-                    <!-- ************************************************** ALIGNMENT **************************************************-->
-
-                    <div id="alignment-panel" style="display:none">
-                        <!-- <button type="button" class="btn btn-secondary">Select</button>  -->
-                        <div class="container mt-5">
-                            <h1 class="mb-4">Choose your alignment</h1>
-                            <table class="table-align table-bordered">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th></th>
-                                        <th>Lawful</th>
-                                        <th>Neutral</th>
-                                        <th>Chaotic</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>Good</th>
-                                        <td class="selection">Lawful good</td>
-                                        <td class="selection">Neutral good</td>
-                                        <td class="selection">Chaotic good</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Neutral</th>
-                                        <td class="selection">Lawful neutral</td>
-                                        <td class="selection">(True) neutral</td>
-                                        <td class="selection">Chaotic neutral</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Evil</th>
-                                        <td class="selection">Lawful evil</td>
-                                        <td class="selection">Neutral evil</td>
-                                        <td class="selection">Chaotic evil</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="character-details" id="name">
+                            <h2 class="info-title">Name</h2>
+                            <p id="info-name" class="info-selected">Nyx</p>
                         </div>
-                
                     </div>
-                    <!-- ************************************************** ABILITY **************************************************-->
 
-                    <div id="ability-panel" style="display:none">
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="race-subrace">
+                        <img id="dice-race" src="../images/icons/dice-red.png" alt="avatar1">
 
-                        <h1> ABILITY PANEL</h1>
-                        <!--- Aqui se meten los input --->
-                        <div id="ability-container">
-                            <h1>DADIÑOS</h1>
-                            <p>If you want you can use our dices to decide your ability points </p>
-                            <p>The lesser number will not be included in the sum</p>
-                            <div id="dice-container">
-                                <span class="dice" id="dice1">0</span>
-                                <span class="dice" id="dice2">0</span>
-                                <span class="dice" id="dice3">0</span>
-                                <span class="dice" id="dice4">0</span>
-                                <span class="dice" id="igualA">=</span>
-                                <span class="dice" id="dice-total">0</span>
-                            </div>
-
-                            <button type="button" id="diceButton" class="btn btn-info"
-                                onclick="rollDice()">Roll</button>
+                        <div class="character-details" id="race">
+                            <h2 class="info-title">Race</h2>
+                            <p id="nav-race-name" class="info-selected">Tiefling</p>
                         </div>
-                        <button type="button" id="skillsDoneButton" class="btn btn-light"
-                            onclick="diceDone()">Done</button>
                     </div>
 
-                    <!-- ************************************************** AVATAR **************************************************-->
-                    <div id="avatar-panel" style="display:none">
-                        <h1>UPLOAD YOUR AVATAR</h1>
-                        <div>
-                            <label for="formFileLg" class="form-label"></label>
-                            <input class="form-control" id="formFileLg" type="file">
-                            <div class="form-check">
-                                <input class="form-avatar-input" type="checkbox" value="" id="avatar-option">
-                                <label class="avatar-label" for="checkAvatar">
-                                    I prefer it without avatar, thanks
-                                </label>
-                            </div>
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="class">
+                        <img id="dice-class" src="../images/icons/dice-red.png" alt="avatar1">
 
-                            <button type="button" class="btn btn-secondary"onclick="avatarDone()">Done</button>
+                        <div class="character-details" id="class">
+                            <h2 class="info-title">Class</h2>
+                            <p id="nav-class-name" class="info-selected">Rogue</p>
+                        </div>
+                    </div>
+
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="alignment">
+                        <img id="dice-align" src="../images/icons/dice-red.png" alt="avatar1">
+
+                        <div class="character-details" id="align">
+                            <h2 class="info-title">Alignment</h2>
+                            <p id="align-pending" class="info-selected">Chaotic Evil</p>
                         </div>
                     </div>
 
 
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="ability">
+                        <img id="dice-ability" src="../images/icons/dice-red.png" alt="avatar1">
+
+                        <div class="character-details" id="skills">
+                            <h2 class="info-title">Ability</h2>
+                            <p id="ability-pending" class="info-selected">Pending</p>
+                        </div>
+                    </div>
+
+                    <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="avatar">
+                        <img id="dice-avatar" src="../images/icons/dice-red.png" alt="avatar1">
+
+                        <div class="character-details" id="avatar">
+                            <h2 class="info-title">Avatar</h2>
+                            <p id="avatar-pending" class="info-selected">Pending</p>
+                        </div>
+                    </div>
+
+                    <div id="print-pdf-button" class="character-info" data-set="print">
+                        <img id="dice-avatar" src="../images/icons/dice-red.png" alt="avatar1">
+
+                        <div class="character-details" id="avatar">
+                            <h2 class="info-title">Download As PDF</h2>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li id="class-list" class="list-classes">
+                    </ul>
                 </div>
+            </div>
 
-                <!-- <div class="btn-container">
+            <!-- CENTRAL PANEL -->
+            <div class="col-lg-6">
+                <section class="central-panel">
+                    <div class="container-central-panel">
+                        <!-- ************************************************** WELCOME **************************************************-->
+                        <div id="welcome-panel">
+
+                            <h1>WELCOME</h1>
+                            <h2>Welcome to our D&D character creator</h2>
+                            <hr>
+                            <p>Here you can create you D&D Character ready to use in your role games with your friends.
+                            </p>
+                            <p>You have one created as an example at the summary section, let's create one at your own!
+                            </p>
+                            <img id="welcome-dice" src="../images/icons/header-dice.png" alt="dice">
+
+                            <div id="name-container">
+                                <label for="inputName"></label>
+                                <p>First of all enter your character name</p>
+                                <input type="text" class="form-name" id="inputName" placeholder="Tav"
+                                    onkeyup="nameButtonDisabled()">
+                                <button type="button" id="nameButton" class="btn btn-light"
+                                    onclick="clickInputWelcome()" disabled>Done</button>
+                            </div>
+                        </div>
+
+                        <!-- ************************************************** CLASS **************************************************-->
+
+                        <div id="class-panel" style="display:none">
+                            <!-- <button type="button" class="btn btn-secondary">Select</button> -->
+                        </div>
+
+                        <!-- ****************************************************** RACE **************************************************-->
+
+                        <div id="race-subrace-panel" style="display:none">
+                            <!-- <button type="button" class="btn btn-secondary">Select</button> -->
+                        </div>
+
+                        <!-- ************************************************** ALIGNMENT **************************************************-->
+
+                        <div id="alignment-panel" style="display:none">
+                            <!-- <button type="button" class="btn btn-secondary">Select</button>  -->
+                            <div class="container mt-5">
+                                <h1 class="mb-4">Choose your alignment</h1>
+                                <table class="table-align table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th></th>
+                                            <th>Lawful</th>
+                                            <th>Neutral</th>
+                                            <th>Chaotic</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Good</th>
+                                            <td class="selection">Lawful good</td>
+                                            <td class="selection">Neutral good</td>
+                                            <td class="selection">Chaotic good</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Neutral</th>
+                                            <td class="selection">Lawful neutral</td>
+                                            <td class="selection">(True) neutral</td>
+                                            <td class="selection">Chaotic neutral</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Evil</th>
+                                            <td class="selection">Lawful evil</td>
+                                            <td class="selection">Neutral evil</td>
+                                            <td class="selection">Chaotic evil</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- ************************************************** ABILITY **************************************************-->
+
+                        <div id="ability-panel" style="display:none">
+
+                            <h1> ABILITY PANEL</h1>
+                            <!--- Aqui se meten los input --->
+                            <div id="ability-container">
+                                <h1>DADIÑOS</h1>
+                                <p>If you want you can use our dices to decide your ability points </p>
+                                <p>The lesser number will not be included in the sum</p>
+                                <div id="dice-container">
+                                    <span class="dice" id="dice1">0</span>
+                                    <span class="dice" id="dice2">0</span>
+                                    <span class="dice" id="dice3">0</span>
+                                    <span class="dice" id="dice4">0</span>
+                                    <span class="dice" id="igualA">=</span>
+                                    <span class="dice" id="dice-total">0</span>
+                                </div>
+
+                                <!-- <button type="button" id="diceButton" class="btn btn-info"
+                                onclick="rollDice(event)">Roll</button> -->
+                            </div>
+                            <button type="button" id="skillsDoneButton" class="btn btn-light"
+                                onclick="diceDone()">Done</button>
+                        </div>
+
+                        <!-- ************************************************** AVATAR **************************************************-->
+                        <div id="avatar-panel" style="display:none">
+                            <h1>UPLOAD YOUR AVATAR</h1>
+
+                            <div id="avatar-container">
+                                <label for="formFileLg" class="form-label"></label>
+                                <input class="form-control" id="formFileLg" type="file" accept="image/png, image/jpeg"
+                                    onchange="changeAvatar(this)">
+                                <small>If you don't upload an image you will have the default one</small>
+                                <!-- <p id="preview-text">Preview</p>
+                                <img id="avatar-preview" src="../images/others/logoDND.png" alt="">           -->
+                            </div>
+                            <button type="button" class="btn btn-secondary noAvatarButton"
+                                onclick="avatarDone()">Done</button>
+                        </div>
+
+
+                    </div>
+
+                    <!-- <div class="btn-container">
 <button type="button" class="btn btn-dark btn-lg text-center create-button">Create PDF Sheet</button></div> -->
-            </section>
-        </div>
-        <div class="col-lg-3">
-            <div class="summary">
-                <br>
-                <h3 id="summary-name" class="text">Summary</h3>
-                <img id="summary-class-image" class="class-avatar" src="../images/classes/rogue.webp"
-                    class="card-img-top" alt="...">
-                <h3 id="summary-race" class="text">Tiefling</h3>
+                </section>
+            </div>
+            <div class="col-lg-3">
+                <div id="summary" class="summary">
+                    <br>
+                    <h1 id="summary-name" class="text">Summary</h1>
+                    <img id="summary-class-image" class="class-avatar" src="../images/classes/rogue.webp"
+                        class="card-img-top" alt="...">
+                    <h3 id="summary-race" class="text">Tiefling</h3>
                     <h3 id="summary-class" class="text">Level 1 Rogue</h3>
-                    <h3 id="summary-alignment"> </h3>
+                    <h3 id="summary-alignment"></h3>
                     <p id="summary-equip" class="card-text">EQUIPMENT: Leather Armor, Dagger, Thieves' Tools</p>
-                    <p id="summary-profi">PROFICIENCY: Light Armor, Simple Weapons, Longswords, Rapiers, Shortswords, Hand crossbows, Thieves' Tools, Saving Throw: DEX, Saving Throw: INT</p>
-                    <table class="table text-center overflow-hidden">
+                    <p id="summary-profi">PROFICIENCY: Light Armor, Simple Weapons, Longswords, Rapiers, Shortswords,
+                        Hand crossbows, Thieves' Tools, Saving Throw: DEX, Saving Throw: INT</p>
+                    <table id="summary-table" class="table text-center overflow-hidden">
                         <thead>
                             <tr>
                                 <th>STR</th>
@@ -240,7 +267,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr id="ability-tr">
                                 <td class="td" id="td-STR">20</td>
                                 <td class="td" id="td-DEX">20</td>
                                 <td class="td" id="td-CON">20</td>
@@ -252,27 +279,27 @@
                     </table>
                     <div class="avatar-card">
                         <h3 class="text">Your Avatar</h3>
-                        <img id="user-avatar" src="../images/others/discord-logo.png " alt="user-avatar">
+                        <img id="user-avatar" src="../images/others/logoDND.png" alt="user-avatar">
                     </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- FOOTER -->
-    <!-- <footer class="container-footer">
+        <!-- FOOTER -->
+        <!-- <footer class="container-footer">
     
     </footer> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
- </container>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+        </script>
+    </container>
 </body>
 
 <!-- TEMPLATES -->
@@ -283,7 +310,7 @@
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
         <button type="button" class="btn btn-light" id="button-race" data-bs-toggle="modal"
-            data-bs-target="#myModalRace" onclick="showModalRace(event)">Detalle</button>
+            data-bs-target="#myModalRace" onclick="showModalRace(event)">Info</button>
     </div>
 </template>
 
@@ -292,34 +319,21 @@
         <img src="----imageSource-----" alt="---imageAlt---">
         <p class="panel-options"></p>
         <button type="button" class="btn btn-light" id="button-class" data-bs-toggle="modal"
-            data-bs-target="#myModalClass" onclick="showModalClass(event)">Detalle</button>
+            data-bs-target="#myModalClass" onclick="showModalClass(event)">Info</button>
     </div>
-</template>
-
-<template id="box-alignments-template">
-
-
-    
-    <!-- <div id="alignment-box" class="box-alignment" >
-
-        <div id="align-content">
-        <h3 id="align-name-temp" class="panel-options"></h3>
-        <p id="alignment-detail"></p>
-        </div>
-        <button type="button" id="nameButton" class="btn btn-light" onclick="alignDone()">Select</button>
-    </div> -->
 </template>
 
 <template id="box-skills-template">
     <div class=" skills-container input-group mb-3">
         <span class="input-group-text"></span>
         <input type="number" step="1" min="8" max="20" id="numeroInput" class="form-control" value="8">
+        <button type="button" id="setAbilityButton" class="btn btn-info" onclick="rollDice(event,true)">Roll</button>
     </div>
 
 </template>
 
 
-<div class="modal modal-lg fade" id="myModalRace">
+<div class="modal modal-xl fade" id="myModalRace">
     <div class="modal-dialog">
         <img id="modal-race-img" src="" alt="">
         <p id="modal-name-race"></p> <br>
@@ -329,14 +343,14 @@
         <p id="size"></p><br>
         <div class="modal-content">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                onclick="selectOptionRace(event)">SELECCIONAR</button>
+                onclick="selectOptionRace(event)">SELECT</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
 
 
-<div class="modal modal-lg fade" id="myModalClass">
+<div class="modal modal-xl fade" id="myModalClass">
     <div class="modal-dialog">
         <img id="modal-class-img" src="" alt="">
         <p id="modal-name-class"></p> <br>
@@ -346,9 +360,9 @@
         <p id="equipment"></p><br>
 
         <div class="modal-content">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                onclick="selectOptionClass(event)">SELECCIONAR</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
+            <button type="button" class="btn btn-success option-button" id data-bs-dismiss="modal"
+                onclick="selectOptionClass(event)">SELECT</button>
+            <button type="button" class="btn btn-danger option-button" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
@@ -378,5 +392,3 @@
 <!-- <div> Iconos diseñados por <a href="https://www.flaticon.es/autores/amethyst-prime" title="Amethyst prime"> Amethyst prime </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div> -->
 
 </html>
-
-

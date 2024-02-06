@@ -99,6 +99,8 @@ raceData.forEach(item => {
         skillsDnD.forEach(item => {
             skillsTemplate.querySelector('span').textContent = item.name;
             const skillsBox = skillsTemplate.cloneNode(true);
+            skillsBox.getElementById('numeroInput').id += item.name;
+            skillsBox.getElementById('setAbilityButton').dataset.ability = item.name;
             skillsFragment.appendChild(skillsBox);
             });
         skillsPanel.insertBefore(skillsFragment, abilityContainer);
@@ -108,6 +110,14 @@ raceData.forEach(item => {
 
 /**************************CENTRAL PANEL***************************************** */
 function changeCentralPanel(panelId) {
+    let charInfoList = document.getElementsByClassName('character-info');
+    for(let charInfo of charInfoList) {
+        if(charInfo.dataset.set === panelId) {
+            charInfo.style.backgroundColor = 'red'; // element.classList.add("mystyle");
+        }else {
+            charInfo.style.backgroundColor = 'green'; // element.classList.remove("mystyle");        
+        }
+    }
     // Ocultar todos los paneles centrales
     document.getElementById('welcome-panel').style.display = 'none';
     document.getElementById('race-subrace-panel').style.display = 'none';
@@ -282,7 +292,7 @@ function diceMovement(diceName){
 
 //**************DICE BEHAVIOUR ***********************/
 let timesRolled = 0;
-function rollDice(){
+function rollDice(e, setValue = false){
 let diceSum=0;
 let dices = []   
 let dice1= document.getElementById('dice1');
@@ -312,17 +322,29 @@ timesRolled++;
 [dice1, dice2, dice3, dice4,totalAfterDiscount].forEach(dice => {
     dice.style='transform: rotate('+timesRolled * 360+'deg);';
 });
+
 setTimeout(() => {resetRoll(diceButton,totalAfterDiscount,diceTotal)},1000);
+
 setTimeout(() => {clearDices(dices)},500);
+
 [dice1, dice2, dice3, dice4][minIndex].style.backgroundColor = 'black';
 [dice1, dice2, dice3, dice4][minIndex].style.color = 'white';
 totalAfterDiscount.style='background:lightgreen;';
+setTimeout(() => {
+    if(setValue) {
+    
+        document.getElementById('numeroInput'+e.target.dataset.ability).value = totalAfterDiscount.textContent;
+    }
+},1000);
 
 }
+
+
 function resetRoll(diceButton,totalAfterDiscount,diceTotal) {
     diceButton.disabled = false;
     totalAfterDiscount.textContent=diceTotal;
 }
+
 
 function clearDices(dices){
     let dice1= document.getElementById('dice1');
@@ -337,7 +359,17 @@ function clearDices(dices){
 
 
 function diceDone(){
-   // let STR = document.getElementById('td-STR');
+    let abilitiesToSet = document.getElementById('ability-tr');
+    let abilitiesToGet = document.getElementsByClassName('skills-container');
+    for (let item of abilitiesToGet) {
+        let ability = item.getElementsByTagName('input')[0].value;
+        let abilityId = item.getElementsByTagName('input')[0].id;
+        let abilityShortId = abilityId.substring(abilityId.length - 3, abilityId.length);
+        abilitiesToSet.querySelector('#td-'+abilityShortId).textContent = ability;
+    }
+
+
+
 
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
@@ -356,22 +388,46 @@ function alignDone(){
 
 
 
-function selectAlignment(){
+function selectAlignment(e){
     let clickableCells = document.querySelectorAll('.selection');
-
+    let infoSelectedAlign = document.getElementById('align-pending');
+    let summaryAlignment = document.getElementById('summary-alignment');
     clickableCells.forEach(function(cell) {
         cell.addEventListener('click', function() {
-    
-            // Aquí puedes realizar la acción que desees al hacer clic en la celda
+            infoSelectedAlign.textContent = this.textContent;
+            summaryAlignment.textContent = this.textContent;
+
+            alignDone();
         });
     });
 
 }
 
+function changeAvatar(elem) {
+    console.log(elem)
+    debugger;
+}
 
+function attachImage(){
+    document.getElementById('formFileLg').onchange = function (evt) {
+        let files = evt.target.files;
+        
+        // FileReader support
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function () {
+                document.getElementById('user-avatar').src = fr.result;
+                avatarDone();
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchToTemplate();
     selectAlignment();
+    attachImage();
+
 });

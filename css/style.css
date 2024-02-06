@@ -40,6 +40,8 @@
 
 body {
 background-image: url(../images/others/table4.jpeg);
+background-repeat: no-repeat;
+background-size: cover;
 background-color: black;
 
 
@@ -54,16 +56,9 @@ width: 100%;
 p{
     color: white;
     text-align: center;
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: 'Mirza', serif;
 
     font-size: 1.6rem;
-}
-
-#modal-content{
-    font-size: 2rem;
-    font-family: 'Varela Round', sans-serif;
-
-    
 }
 
 
@@ -266,8 +261,8 @@ h1,h2, h4, h5, h3 ,h6{
     padding-right:8px;
     background-color:var(--panel-color);
     box-shadow: 0px 3px 4px 4px #5a401d;
-    width:220px;
-    height:220px;
+    width:250px;
+    height:250px;
     margin-bottom: 20px;
     margin-top: 20px;
     border-radius: 10px;
@@ -282,7 +277,7 @@ h1,h2, h4, h5, h3 ,h6{
 
 
 #welcome-panel{
-    padding: 20px;
+    padding: 50px;
     justify-content: center;
     align-items: center;
     background-color: var(--panel-color);
@@ -319,7 +314,7 @@ h1,h2, h4, h5, h3 ,h6{
     -webkit-transform:rotate(4deg);
     -o-transform:rotate(4deg);
     -moz-transform:rotate(4deg);
-    width:200px;
+    width:220px;
     height:200px;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -351,9 +346,9 @@ h1,h2, h4, h5, h3 ,h6{
     flex-direction: column; 
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
     padding: 20px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
-    padding: 0.5rem 0.5rem;
+    padding: 20px;
     margin: 1rem 0.25rem 0.25rem;
     color: #41403E;
     background-color: beige;
@@ -363,9 +358,14 @@ h1,h2, h4, h5, h3 ,h6{
     box-sizing: border-box;
     border: solid 0.1em #4140344E;
     width: fit-content;
+    height: fit-content;
     max-width: 99%;
     overflow: hidden;
     margin-right: 20px;
+}
+
+.modal-dialog p{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .summary{
@@ -417,7 +417,7 @@ h1,h2, h4, h5, h3 ,h6{
 
 
 .panel-options{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .card-text{
@@ -425,6 +425,9 @@ h1,h2, h4, h5, h3 ,h6{
     padding: 10px;
 }
 
+#button-race{
+    margin-bottom: 20px;
+}
 
 /* #endregion */
 
@@ -450,7 +453,7 @@ h1,h2, h4, h5, h3 ,h6{
 #modal-race-img ,#modal-class-img  {
 background-color: black;
 border-radius: 25px;
-width: 160px;
+width: 120px;
 
 
 }
@@ -536,12 +539,48 @@ th, td {
 td:hover{
     background-color: white;
     color: black;
+    cursor: pointer;
 }
 
 th{
     font-family: 'Mirza', serif;
     font-size: 2rem;
-    
 }
 
+#summary-table td, th{
+    height: 50px;
+}
 
+#inputName{
+    height: 50px;
+}
+
+#info-selected {
+    font-size: 2rem !important;
+}
+
+#avatar-preview{
+width: 220px;
+height: 200px;
+margin-bottom: 20px;
+}
+
+#preview-text{
+   margin-top: 50px; 
+}
+
+.noAvatarButton{
+    margin-top: 20px;
+}
+
+#welcome-dice{
+    width: 80px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#skillsDoneButton{
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+}
