@@ -461,7 +461,7 @@ width: 120px;
 #ability-panel span{
     background-color: white;
     color: black;
-    width: 50px;
+    width: 60px;
 } 
 
 #ability-panel, #alignment-panel {
@@ -592,4 +592,21 @@ margin-bottom: 20px;
 
 #print-pdf-button{
     background-color: rgb(124, 164, 124);
+}
+
+#setAbilityButton{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#numeroInputCHA,
+#numeroInputCON,
+#numeroInputDEX,
+#numeroInputINT,
+#numeroInputSTR,
+#numeroInputWIS,
+#inputName
+{
+    font-size: 1.5rem;
 }

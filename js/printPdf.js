@@ -25,7 +25,7 @@ const printPDF = () => {
 
 
         // Save the PDF
-        doc.save('characther_sheet.pdf');
+        doc.save('character_sheet.pdf');
     });
 };
 
