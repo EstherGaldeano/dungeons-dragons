@@ -83,9 +83,9 @@ function changeCentralPanel(panelId) {
     let charInfoList = document.getElementsByClassName('character-info');
     for(let charInfo of charInfoList) {
         if(charInfo.dataset.set === panelId) {
-            charInfo.style.backgroundColor = 'grey'; // element.classList.add("mystyle");
+            charInfo.style.backgroundColor = 'grey'; 
         }else {
-            charInfo.style.backgroundColor = '#302c2c'; // element.classList.remove("mystyle");        
+            charInfo.style.backgroundColor = '#302c2c';      
         }
     }
     // Ocultar todos los paneles centrales
@@ -372,7 +372,6 @@ function selectAlignment(e){
         cell.addEventListener('click', function() {
             infoSelectedAlign.textContent = this.textContent;
             summaryAlignment.textContent = this.textContent;
-
             alignDone();
         });
     });

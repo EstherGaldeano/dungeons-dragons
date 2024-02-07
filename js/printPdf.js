@@ -4,8 +4,6 @@ var pdf = new jsPDF();
 const printPDF = () => {
     let element = document.getElementById('summary');
     let clone = element.cloneNode(true);
-    // clone.style.width = '595px'; // Set width to match A4 size in pixels
-    // clone.style.height = '842px'; // Set height to match A4 size in pixels
     clone.style.width = '595px'; // Set width to match A4 size in pixels
     clone.style.height = '970px'; // Set height to match A4 size in pixels
 
@@ -23,11 +21,11 @@ const printPDF = () => {
         var doc = new jsPDF('p', 'pt', 'a4', false);
 
         // Add the image (canvas) to the PDF
-        doc.addImage(imgData, 'PNG', 10, 10, 595-20, 842-20); // Adjust the coordinates and dimensions as needed
-        //doc.addImage(imgData, 'PNG', 10, 10, 575, 812); // Adjust the coordinates and dimensions as needed
+        doc.addImage(imgData, 'PNG', 10, 10, 595-20, 842-20); 
+
 
         // Save the PDF
-        doc.save('sample-document.pdf');
+        doc.save('characther_sheet.pdf');
     });
 };
 

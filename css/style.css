@@ -32,20 +32,11 @@
 
 /*COSAS GENERALES*/
 
-/* body {
-    box-shadow: 0 0 0 black, 0 0 6em #8a4d0f inset;
-    background: #fffef0;
-    margin: 0;
-    padding: 2em;
-} */
-
 body {
 background-image: url(../images/others/table4.jpeg);
-background-repeat: no-repeat;
+/* background-repeat: no-repeat;
 background-size: cover;
-background-color: black;
-
-
+background-color: black; */
 
 width: 100%;
 }
@@ -62,11 +53,9 @@ p{
     font-size: 1.6rem;
 }
 
-
 h1,h2,h3{
    font-family: 'Mirza', serif;  /* Fuente que parece medieval */
 }
-
 
 
 h1,h2, h4, h5, h3 ,h6{
@@ -252,6 +241,7 @@ h1,h2, h4, h5, h3 ,h6{
     box-sizing: border-box;
     flex-direction: column; 
     justify-content: center; 
+    box-shadow: 0px 3px 4px 4px #5a401d;
    }
 
 
@@ -286,7 +276,7 @@ h1,h2, h4, h5, h3 ,h6{
     background-color: var(--panel-color);
     color: #fff;
     border-radius: 20px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 3px 4px 4px #5a401d;
 }
 
 .central-panel-detail-info{
@@ -478,6 +468,7 @@ width: 120px;
     
     display: none;
     text-align: center;
+    box-shadow: 0px 3px 4px 4px #5a401d;
 }
 
 #ability-container{
@@ -562,6 +553,10 @@ th{
 width: 220px;
 height: 200px;
 margin-bottom: 20px;
+}
+
+#avatar-panel{
+    box-shadow: 0px 3px 4px 4px #5a401d;
 }
 
 #preview-text{
