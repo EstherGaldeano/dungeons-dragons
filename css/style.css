@@ -380,11 +380,8 @@ h1,h2, h4, h5, h3 ,h6{
     border: solid 0.1em #4140344E;
     overflow: hidden;
     margin-right: 20px;
-    margin-top: px;
+    margin-top: 20px;
 }
-
-
-
 
 .modal-dialog{
     height: 80vh;

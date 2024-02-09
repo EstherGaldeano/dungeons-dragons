@@ -1,4 +1,4 @@
-//API DATA
+// ******************************** API/JSON MANAGEMENT *******************************//
 const apiURL = 'https://www.dnd5eapi.co/api';
 
 async function fetchData(endpoint) {
@@ -8,8 +8,7 @@ async function fetchData(endpoint) {
     return data;
 }
 
-
-/**************************CLASES***************************************** */
+/************************** CLASES ***************************************** */
 const classPanel = document.querySelector('#class-panel');
 const template = document.querySelector('#box-classes-template').content;
 const fragment = document.createDocumentFragment();
@@ -34,7 +33,7 @@ async function fetchClassFromFile() {
 window.addEventListener('DOMContentLoaded', fetchClassFromFile);
 
 
-/**************************RACE***************************************** */
+/************************** RACE***************************************** */
 const racePanel = document.querySelector('#race-subrace-panel');
 const raceTemplate = document.querySelector('#box-races-template').content;
 const raceFragment = document.createDocumentFragment();
@@ -55,7 +54,10 @@ async function fetchToTemplate() {
     racePanel.appendChild(raceFragment);
 
 
-    /**************************SKILLS***************************************** */
+    function showModalRace(e) {
+        showRaceDetail(e.target.dataset.name);
+    }
+ /**************************SKILLS***************************************** */
 
     const skillsTemplate = document.querySelector('#box-skills-template').content;
     const skillsPanel = document.querySelector('#ability-panel');
@@ -77,8 +79,7 @@ async function fetchToTemplate() {
     });
 }
 
-
-/**************************CENTRAL PANEL***************************************** */
+/************************** CENTRAL PANEL MANAGEMENT ***************************************** */
 function changeCentralPanel(panelId) {
     let charInfoList = document.getElementsByClassName('character-info');
     for (let charInfo of charInfoList) {
@@ -104,43 +105,13 @@ function changeCentralPanel(panelId) {
 
     } else {
         document.getElementById(panelId + '-panel').style.display = 'block';
-        // document.getElementById(panelId + '-panel').style.width ='80vh';
-
-    }
-
-}
-
-
-//Disable the button if input is empty
-function nameButtonDisabled() {
-    const button = document.getElementById('nameButton');
-
-    if (document.getElementById('inputName').value !== '') {
-        button.disabled = false;
-    } else {
-        button.disabled = true;
     }
 }
 
-
-//when click, navbar and summary info updated
-function clickInputWelcome() {
-    let nameSelected = document.getElementById('info-name');
-    let nameSummary = document.getElementById('summary-name');
-    let nameInput = document.getElementById('inputName');
-    nameSelected.textContent = nameInput.value;
-    nameSummary.textContent = nameInput.value;
-
-
-    diceMovement('dice-welcome');
-    navWelcome = true;
-    showPdfButton();
-}
-
+// ******************************** SECTION RACE DATA MANAGEMENT *******************************//
 function showModalRace(e) {
     showRaceDetail(e.target.dataset.name);
 }
-
 
 async function showRaceDetail(raceIndex) {
     fetchData('races/' + raceIndex).then(async (item) => {
@@ -161,6 +132,7 @@ async function showRaceDetail(raceIndex) {
         });
 
         name.textContent = item.name;
+        localStorage.setItem('raceName', item.name);
         speed.textContent = 'SPEED: ' + item.speed;
         age.textContent = 'AGE: ' + item.age;
         alignment.textContent = 'ALIGNMENT: ' + item.alignment;
@@ -181,6 +153,10 @@ function selectOptionRace(e) {
     showPdfButton();
 }
 
+// ******************************** END SECTION * RACE DATA MANAGEMENT *******************************//
+
+
+// ******************************** SECTION CLASS DATA MANAGEMENT *******************************//
 
 function showModalClass(e) {
     showClassDetail(e.target.dataset.name);
@@ -218,6 +194,7 @@ async function showClassDetail(classesIndex) {
         });
 
         name.textContent = item.name;
+        localStorage.setItem('className', item.name);
         hit.textContent = 'HIT DIE: ' + item.hit_die;
         profi.textContent = 'PROFICIENCY: ' + profiString;
         equipment.textContent = 'EQUIPMENT: ' + equipmentString;
@@ -257,21 +234,49 @@ async function selectOptionClass(e) {
     diceMovement('dice-class');
 }
 
+// ******************************** END SECTION * RACE DATA MANAGEMENT *******************************//
+
+
+
+// ******************************** SECTION ALIGNMENT DATA MANAGEMENT *******************************//
 
 function showModalAlign(e) {
     showAlignDetail(e.target.dataset.name);
 }
 
+function selectAlignment(e) {
+    let clickableCells = document.querySelectorAll('.selection');
+    let infoSelectedAlign = document.getElementById('align-pending');
+    let summaryAlignment = document.getElementById('summary-alignment');
+    clickableCells.forEach(function (cell) {
+        cell.addEventListener('click', function () {
+            infoSelectedAlign.textContent = this.textContent;
+            summaryAlignment.textContent = this.textContent;
+            localStorage.setItem('alignmentName', this.textContent);
+            alignDone();
+        });
+    });
+}
+
+function alignDone() {
+    diceMovement('dice-align');
+    navAlignment = true;
+    showPdfButton();
+}
+
+
+// ******************************** END SECTION * ALIGNMENT DATA MANAGEMENT *******************************//
+
+
+
+// ******************************** SECTION DICE BEHAVIOUR *******************************//
 
 function diceMovement(diceName) {
     diceIMG = document.getElementById(diceName);
     diceIMG.src = '../images/icons/dice-green.png';
     diceIMG.style = 'transform: rotate(30deg);';
-
 }
 
-
-//**************DICE BEHAVIOUR ***********************/
 let timesRolled = 0;
 
 function rollDice(e, setValue = false) {
@@ -287,7 +292,6 @@ function rollDice(e, setValue = false) {
 
     for (i = 0; i < 4; i++) {
         dices[i] = Math.floor(Math.random() * 6) + 1;
-        console.log(dices[i]);
         diceSum += dices[i];
     }
 
@@ -296,7 +300,6 @@ function rollDice(e, setValue = false) {
     let diceTotal = diceSum - minNum;
 
     totalAfterDiscount.style = 'background:white;';
-
 
     timesRolled++;
 
@@ -340,6 +343,7 @@ function clearDices(dices) {
     dice4.textContent = dices[3];
 }
 
+let abilities = [];
 
 function diceDone() {
     let abilitiesToSet = document.getElementById('ability-tr');
@@ -349,7 +353,9 @@ function diceDone() {
         let abilityId = item.getElementsByTagName('input')[0].id;
         let abilityShortId = abilityId.substring(abilityId.length - 3, abilityId.length);
         abilitiesToSet.querySelector('#td-' + abilityShortId).textContent = ability;
+        abilities.push(ability);
     }
+    localStorage.setItem('skillPoints', abilities);
 
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
@@ -358,33 +364,19 @@ function diceDone() {
     showPdfButton();
 }
 
+// ******************************** END SECTION * DICE BEHAVIOUR *******************************//
+
+
+// ******************************** SECTION AVATAR *******************************//
+
+
+
 function avatarDone() {
     diceMovement('dice-avatar');
     let avatarStatus = document.getElementById('avatar-pending');
     avatarStatus.textContent = 'Done';
     navAvatar = true;
     showPdfButton();
-
-}
-
-function alignDone() {
-    diceMovement('dice-align');
-    navAlignment = true;
-    showPdfButton();
-}
-
-function selectAlignment(e) {
-    let clickableCells = document.querySelectorAll('.selection');
-    let infoSelectedAlign = document.getElementById('align-pending');
-    let summaryAlignment = document.getElementById('summary-alignment');
-    clickableCells.forEach(function (cell) {
-        cell.addEventListener('click', function () {
-            infoSelectedAlign.textContent = this.textContent;
-            summaryAlignment.textContent = this.textContent;
-            alignDone();
-        });
-    });
-
 }
 
 function changeAvatar(elem) {
@@ -395,17 +387,22 @@ function attachImage() {
     document.getElementById('formFileLg').onchange = function (evt) {
         let files = evt.target.files;
 
-        // FileReader support
         if (FileReader && files && files.length) {
             var fr = new FileReader();
             fr.onload = function () {
                 document.getElementById('user-avatar').src = fr.result;
+                localStorage.setItem('avatarURL', fr.result);
                 avatarDone();
             }
             fr.readAsDataURL(files[0]);
         }
     }
 }
+
+// ******************************** END SECTION * AVATAR *******************************//
+
+
+// ******************************** SECTION PDF CREATION *******************************//
 
 let navWelcome = false;
 let navRaceOK = false;
@@ -418,21 +415,28 @@ let navAvatar = false;
 function showPdfButton() {
 
     let pdfButton = document.getElementById('print-pdf-button');
-    console.log(navWelcome, navRaceOK, navClasses, navAlignment, navAbility, navAvatar);
     if (navWelcome && navRaceOK && navClasses && navAlignment && navAbility && navAvatar) {
         pdfButton.hidden = false;
-        //alert("Character done!\nPDF available");
         mostrarAlerta();
     }
 }
 
+//when click, navbar and summary info updated
+function clickInputWelcome() {
+    let nameSelected = document.getElementById('info-name');
+    let nameSummary = document.getElementById('summary-name');
+    let nameInput = document.getElementById('inputName');
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchToTemplate();
-    selectAlignment();
-    attachImage();
-});
+    //guardo el dato en almacenamiento local por si lo necesito más adelante
+    localStorage.setItem('characterName', nameInput.value);
 
+    nameSelected.textContent = nameInput.value;
+    nameSummary.textContent = nameInput.value;
+
+    diceMovement('dice-welcome');
+    navWelcome = true;
+    showPdfButton();
+}
 function mostrarAlerta() {
     let alert = document.getElementById('alert');
     alert.style.display = 'block';
@@ -446,4 +450,38 @@ function mostrarAlerta() {
             alert.style.display = 'none';
         }, 500);
     }, 3000);
+
+    // Tenemos los datos seleccionados guardados en local por si los necesitaramos
+
+    let characterNametorage = localStorage.getItem('characterName');
+    console.log("Character name:", characterNametorage );
+    let classNameStorage = localStorage.getItem('className');
+    console.log("Character class:", classNameStorage);
+    let raceNameStorage = localStorage.getItem('raceName');
+    console.log("Character race:", raceNameStorage );
+    let alignmentNameStorage = localStorage.getItem('alignmentName');
+    console.log("Character alignment:", alignmentNameStorage );
+    let skillPointsStorage = localStorage.getItem('skillPoints');
+    console.log("Character skill points:", skillPointsStorage );
+    let avatarStorage = localStorage.getItem('avatarURL');
+    console.log("Character avatar:", avatarStorage );
+
 }
+
+//Disable the button if input is empty
+function nameButtonDisabled() {
+    const button = document.getElementById('nameButton');
+
+    if (document.getElementById('inputName').value !== '') {
+        button.disabled = false;
+    } else {
+        button.disabled = true;
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchToTemplate();
+    selectAlignment();
+    attachImage();
+});
