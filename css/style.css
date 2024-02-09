@@ -444,9 +444,20 @@ h1,h2, h4, h5, h3 ,h6{
 background-color: black;
 border-radius: 25px;
 width: 120px;
-
-
 }
+
+#modal-class-img  {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+#modal-name-class, #modal-name-race{
+    font-weight: bold;
+    font-family:'Mirza', serif;
+    font-size: 3rem;
+}
+
+
 /* #endregion */
 
 #dice-container{
