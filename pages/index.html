@@ -5,41 +5,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>D&D Character Creator</title>
+
     <link rel="stylesheet" href="../css/style.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../js/code.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nova+Cut&family=Special+Elite&family=Walter+Turncoat&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Nova+Cut&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Varela+Round&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap"
-        rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat&family=Nova+Cut&family=Patrick+Hand+SC&family=Varela+Round&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=MedievalSharp" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Montserrat&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
     <script src="../js/printPdf.js" type="module"></script>
+    <script src="../js/code.js" defer></script>
+    
 </head>
 
 <body>
     <container>
-        <header class="header">
-            <div class="header-container">
-            </div>
+        <header>
+        
         </header>
 
         <div class="row">
@@ -49,7 +36,7 @@
 
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="welcome">
-                        <img id="dice-welcome" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-welcome" src="../images/icons/dice-red.png" alt="dice welcome">
 
                         <div class="character-details" id="name">
                             <h2 class="info-title">Name</h2>
@@ -58,7 +45,7 @@
                     </div>
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="race-subrace">
-                        <img id="dice-race" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-race" src="../images/icons/dice-red.png" alt="dice race">
 
                         <div class="character-details" id="race">
                             <h2 class="info-title">Race</h2>
@@ -67,7 +54,7 @@
                     </div>
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="class">
-                        <img id="dice-class" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-class" src="../images/icons/dice-red.png" alt="dice class">
 
                         <div class="character-details" id="class">
                             <h2 class="info-title">Class</h2>
@@ -76,7 +63,7 @@
                     </div>
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="alignment">
-                        <img id="dice-align" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-align" src="../images/icons/dice-red.png" alt="dice alignment">
 
                         <div class="character-details" id="align">
                             <h2 class="info-title">Alignment</h2>
@@ -86,7 +73,7 @@
 
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="ability">
-                        <img id="dice-ability" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-ability" src="../images/icons/dice-red.png" alt="dice abilities">
 
                         <div class="character-details" id="skills">
                             <h2 class="info-title">Ability</h2>
@@ -95,7 +82,7 @@
                     </div>
 
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="avatar">
-                        <img id="dice-avatar" src="../images/icons/dice-red.png" alt="avatar1">
+                        <img id="dice-avatar" src="../images/icons/dice-red.png" alt="dice avatar">
 
                         <div class="character-details" id="avatar">
                             <h2 class="info-title">Avatar</h2>
@@ -104,7 +91,7 @@
                     </div>
 
                     <div id="print-pdf-button" hidden  class="character-info" data-set="print">
-                        <img id="dice-avatar" src="../images/icons/header-dice.png" alt="avatar1">
+                        <img id="dice-avatar" src="../images/icons/header-dice.png" alt="dice pdf">
 
                         <div class="character-details" id="avatar">
                             <h2 class="info-title">Download As PDF</h2>
@@ -120,6 +107,10 @@
             <!-- CENTRAL PANEL -->
             <div class="col-lg-6">
                 <section class="central-panel">
+                    <div class="alert alert-success" id="alert" style="width: 80%;" role="alert">
+                        <p><strong>Hey!</strong>Character done!</p>
+                        <p>PDF Available</p>
+                    </div> 
                     <div class="container-central-panel">
                         <!-- ************************************************** WELCOME **************************************************-->
                         <div id="welcome-panel">
@@ -278,10 +269,11 @@
             </div>
         </div>
 
-        <!-- FOOTER -->
-        <!-- <footer class="container-footer">
-    
-    </footer> -->
+        <footer class="footer bg-dark text-light text-center py-3">
+            <div class="container">
+              <span>© 2024 retse.dev. Todos los derechos reservados.</span>
+            </div>
+          </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
