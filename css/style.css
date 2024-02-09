@@ -351,25 +351,28 @@ h1,h2, h4, h5, h3 ,h6{
     align-items: center;
     flex-direction: column; 
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
-    padding: 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
     padding: 20px;
-    margin: 1rem 0.25rem 0.25rem;
     color: #41403E;
     background-color: beige;
-    outline: none;
     box-shadow: 1em 1.5em 1.5em -1em rgba(0, 0, 0, 0.5);
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-    box-sizing: border-box;
     border: solid 0.1em #4140344E;
-    width: fit-content;
-    height: fit-content;
-    max-width: 99%;
-    overflow: hidden;
-    margin-right: 20px;
+    
 }
+.option-button {
+    width: 30%;
+    background-color: beige;
+    align-self: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.modal-content {
+    background-color: beige !important; 
+    border: none !important;
 
+}
 .modal-dialog p{
     font-family: 'Montserrat', sans-serif;
 }
@@ -396,9 +399,7 @@ h1,h2, h4, h5, h3 ,h6{
     margin-top: 20px;
 }
 
-.modal-dialog{
-    height: 80vh;
-}
+
 .summary .text, .card-text{
     color: black;
 }

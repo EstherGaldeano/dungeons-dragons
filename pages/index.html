@@ -327,7 +327,7 @@
 
 <!-- MODALS -->
 
-<div class="modal modal-xl fade" id="myModalRace">
+<div class="modal modal-xl fade" id="myModalRace"  role="dialog" data-bs-keyboard="false" data-bs-backdrop="static">
     <div class="modal-dialog">
         <img id="modal-race-img" src="" alt="">
         <p id="modal-name-race"></p> <br>
@@ -336,15 +336,15 @@
         <p id="alignment"></p><br>
         <p id="size"></p><br>
         <div class="modal-content">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+            <button type="button" class="btn btn-success option-button" data-bs-dismiss="modal"
                 onclick="selectOptionRace(event)">SELECT</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CLOSE</button>
+            <button type="button" class="btn btn-danger option-button" data-bs-dismiss="modal">CLOSE</button>
         </div>
     </div>
 </div>
 
 
-<div class="modal modal-xl fade" id="myModalClass">
+<div class="modal modal-xl fade" id="myModalClass" role="dialog" data-bs-keyboard="false" data-bs-backdrop="static">
     <div class="modal-dialog">
         <img id="modal-class-img" src="" alt="">
         <p id="modal-name-class"></p> <br>
