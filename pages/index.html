@@ -34,7 +34,6 @@
                 <div class="character-selection text-white">
                     <h1 class="character-title">Character Information</h1>
 
-
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="welcome">
                         <img id="dice-welcome" src="../images/icons/dice-red.png" alt="dice welcome">
 
@@ -115,10 +114,12 @@
                         <!-- ************************************************** WELCOME **************************************************-->
                         <div id="welcome-panel">
 
-                            <h1>WELCOME</h1>
-                            <h2>Welcome to our D&D character creator</h2>
+                       
+                            <h1>DUNGEONS AND DRAGONS</h1>
+                            <h1>CHARACTER CREATOR</h1>
                             <hr>
-                            <p>Here you can create you D&D Character ready to use in your role games with your friends.
+                            <h2>WELCOME!</h2>
+                            <p>At this App you can create you D&D Character ready to use for your role games with your friends.
                             </p>
                             <p>You have one created as an example at the summary section, let's create one at your own!
                             </p>
@@ -129,8 +130,10 @@
                                 <p>First of all enter your character name</p>
                                 <input type="text" class="form-name" id="inputName" placeholder="Tav"
                                     onkeyup="nameButtonDisabled()">
-                                <button type="button" id="nameButton" class="btn btn-light"
+                                <div class="button-container">
+                                <button type="button" id="name-button" class="btn btn-light"
                                     onclick="clickInputWelcome()" disabled>Done</button>
+                                </div>
                             </div>
                         </div>
 
@@ -221,7 +224,7 @@
                                     onchange="changeAvatar(this)">
                                 <small>If you don't upload an image you will have the default one</small>
                             </div>
-                            <button type="button" class="btn btn-secondary noAvatarButton"
+                            <button type="button" class="btn btn-light noAvatarButton" id="avatar-done"
                                 onclick="avatarDone()">Done</button>
                         </div>
                     </div>
@@ -269,7 +272,7 @@
             </div>
         </div>
 
-        <footer class="footer bg-dark text-light text-center py-3">
+        <footer class="footer bg-dark text-light text-center p-3">
             <div class="container">
               <span>© 2024 retse.dev. Todos los derechos reservados.</span>
             </div>
@@ -318,6 +321,8 @@
 </template>
 
 
+<!-- MODALS -->
+
 <div class="modal modal-xl fade" id="myModalRace">
     <div class="modal-dialog">
         <img id="modal-race-img" src="" alt="">
@@ -358,7 +363,6 @@
             <div class="modal-header">
             </div>
             <div id="modal-content" class="modal-body bg-dark">
-                <!-- Contenido del modal para el Elemento 2 -->
                 <p id="modal-name-align"></p> <br>
                 <p id="align-name"></p><br>
                 <p id="align-desc"></p><br>

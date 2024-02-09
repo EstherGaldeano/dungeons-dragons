@@ -5,7 +5,7 @@ const printPDF = () => {
     let element = document.getElementById('summary');
     let clone = element.cloneNode(true);
     clone.style.width = '595px'; // Set width to match A4 size in pixels
-    clone.style.height = '970px'; // Set height to match A4 size in pixels
+    clone.style.height = '1020px'; // Set height to match A4 size in pixels
 
     // Append the clone to the document body to get accurate CSS
     document.body.appendChild(clone);

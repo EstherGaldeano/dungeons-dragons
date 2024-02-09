@@ -73,6 +73,18 @@ async function fetchToTemplate() {
             const skillsBox = skillsTemplate.cloneNode(true);
             skillsBox.getElementById('numeroInput').id += item.name;
             skillsBox.getElementById('setAbilityButton').dataset.ability = item.name;
+            let skillPointsStorage = localStorage.getItem('skillPoints');
+            if(skillPointsStorage !== null) {
+                let skillPoints = JSON.parse(skillPointsStorage);
+                for (let skill of skillPoints) {
+                    if(item.name === skill.id) {
+                        skillsBox.getElementById('numeroInput' + skill.id).value = skill.value;
+                    }
+                }
+                diceMovement('dice-ability');
+                let abilityStatus = document.getElementById('ability-pending');
+                abilityStatus.textContent = 'Done';
+            }
             skillsFragment.appendChild(skillsBox);
         });
         skillsPanel.insertBefore(skillsFragment, abilityContainer);
@@ -217,7 +229,9 @@ async function selectOptionClass(e) {
 
     navClass.textContent = className.textContent;
     summaryEquip.textContent = equipment.textContent;
+    localStorage.setItem('characterEquip', equipment.textContent);
     summaryProfi.textContent = profi.textContent;
+    localStorage.setItem('characterProfi', profi.textContent);
     summaryClass.textContent = className.textContent;
     navClasses = true;
     showPdfButton();
@@ -227,6 +241,7 @@ async function selectOptionClass(e) {
         classData.forEach(item => {
             if (item.name === className.textContent) {
                 summaryIMG.src = item.imgURL;
+                localStorage.setItem('classIMG',item.imgURL);
             }
         });
     });
@@ -250,9 +265,17 @@ function selectAlignment(e) {
     let summaryAlignment = document.getElementById('summary-alignment');
     clickableCells.forEach(function (cell) {
         cell.addEventListener('click', function () {
-            infoSelectedAlign.textContent = this.textContent;
-            summaryAlignment.textContent = this.textContent;
-            localStorage.setItem('alignmentName', this.textContent);
+            let textContent = this.textContent;
+            clickableCells.forEach(cellToCmp => {
+                if(textContent === cellToCmp.textContent){
+                    cellToCmp.classList.add('aligment-seleted');
+                }else {
+                    cellToCmp.classList.remove('aligment-seleted');                   
+                }
+            });
+            infoSelectedAlign.textContent = textContent;
+            summaryAlignment.textContent = textContent;
+            localStorage.setItem('alignmentName', textContent);
             alignDone();
         });
     });
@@ -343,9 +366,10 @@ function clearDices(dices) {
     dice4.textContent = dices[3];
 }
 
-let abilities = [];
+
 
 function diceDone() {
+    let abilities = [];
     let abilitiesToSet = document.getElementById('ability-tr');
     let abilitiesToGet = document.getElementsByClassName('skills-container');
     for (let item of abilitiesToGet) {
@@ -353,9 +377,9 @@ function diceDone() {
         let abilityId = item.getElementsByTagName('input')[0].id;
         let abilityShortId = abilityId.substring(abilityId.length - 3, abilityId.length);
         abilitiesToSet.querySelector('#td-' + abilityShortId).textContent = ability;
-        abilities.push(ability);
+        abilities.push({'id': abilityShortId, 'value': ability});
     }
-    localStorage.setItem('skillPoints', abilities);
+    localStorage.setItem('skillPoints', JSON.stringify(abilities));
 
     diceMovement('dice-ability');
     let abilityStatus = document.getElementById('ability-pending');
@@ -371,9 +395,13 @@ function diceDone() {
 
 
 
-function avatarDone() {
+function avatarDone(isDefault = true) {
     diceMovement('dice-avatar');
     let avatarStatus = document.getElementById('avatar-pending');
+    if(isDefault) {
+        let avatarDefault = document.getElementById('user-avatar');
+        localStorage.setItem('avatarURL', avatarDefault.src);
+    }
     avatarStatus.textContent = 'Done';
     navAvatar = true;
     showPdfButton();
@@ -392,7 +420,7 @@ function attachImage() {
             fr.onload = function () {
                 document.getElementById('user-avatar').src = fr.result;
                 localStorage.setItem('avatarURL', fr.result);
-                avatarDone();
+                avatarDone(false);
             }
             fr.readAsDataURL(files[0]);
         }
@@ -415,6 +443,7 @@ let navAvatar = false;
 function showPdfButton() {
 
     let pdfButton = document.getElementById('print-pdf-button');
+
     if (navWelcome && navRaceOK && navClasses && navAlignment && navAbility && navAvatar) {
         pdfButton.hidden = false;
         mostrarAlerta();
@@ -451,26 +480,11 @@ function mostrarAlerta() {
         }, 500);
     }, 3000);
 
-    // Tenemos los datos seleccionados guardados en local por si los necesitaramos
-
-    let characterNametorage = localStorage.getItem('characterName');
-    console.log("Character name:", characterNametorage );
-    let classNameStorage = localStorage.getItem('className');
-    console.log("Character class:", classNameStorage);
-    let raceNameStorage = localStorage.getItem('raceName');
-    console.log("Character race:", raceNameStorage );
-    let alignmentNameStorage = localStorage.getItem('alignmentName');
-    console.log("Character alignment:", alignmentNameStorage );
-    let skillPointsStorage = localStorage.getItem('skillPoints');
-    console.log("Character skill points:", skillPointsStorage );
-    let avatarStorage = localStorage.getItem('avatarURL');
-    console.log("Character avatar:", avatarStorage );
-
 }
 
 //Disable the button if input is empty
 function nameButtonDisabled() {
-    const button = document.getElementById('nameButton');
+    const button = document.getElementById('name-button');
 
     if (document.getElementById('inputName').value !== '') {
         button.disabled = false;
@@ -484,4 +498,109 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchToTemplate();
     selectAlignment();
     attachImage();
+    loadLocalStorage();
+
 });
+
+const loadLocalStorage =() => {
+
+    //NAME
+    let summaryName = document.getElementById('summary-name');  
+    let navName = document.getElementById('info-name');
+    let nameStorage = localStorage.getItem('characterName');
+    if(nameStorage !== null){
+        summaryName.textContent = nameStorage;
+        navName.textContent = nameStorage;
+        diceMovement('dice-welcome');
+        navWelcome = true;
+    }
+
+    //RACE
+    let summaryRace = document.getElementById('summary-race');
+    let navRace = document.getElementById('nav-race-name');
+    let raceStorage = localStorage.getItem("raceName");
+
+    if (raceStorage !== null) {
+        summaryRace.textContent = raceStorage;
+        navRace = raceStorage;
+        diceMovement('dice-race');
+        navRaceOK = true;
+
+    }
+
+    //CLASS
+    let summaryClass = document.getElementById('summary-class');
+    let navClass = document.getElementById('nav-class-name');
+    let summaryClassIMG = document.getElementById('summary-class-image');
+    let classStorage = localStorage.getItem("className");
+    let classIMGStorage = localStorage.getItem('classIMG');
+
+    if (classStorage !== null) {
+        summaryClass.textContent = classStorage;
+        navClass.textContent = classStorage;
+        diceMovement('dice-class');
+        navClasses = true;
+    }
+
+    if (classIMGStorage !== null){
+        summaryClassIMG.src = classIMGStorage;
+    }
+
+    //ALIGNMENT
+    let summaryAlignment = document.getElementById('summary-alignment');
+    let navAlignmentElem = document.getElementById('align-pending');
+    let alignmentNameStorage = localStorage.getItem('alignmentName');
+
+    if (alignmentNameStorage !== null) {
+        
+        summaryAlignment.textContent = alignmentNameStorage;
+        navAlignmentElem.textContent = alignmentNameStorage;
+        diceMovement('dice-align');
+        navAlignment = true;
+    }
+
+    //EQUIPMENT
+    let summaryEquipment = document.getElementById('summary-equip');
+    let equipmentStorage = localStorage.getItem('characterEquip');
+
+    if (equipmentStorage !== null) {
+        summaryEquipment.textContent = equipmentStorage;
+    }
+
+
+    //PROFICIENCY
+    let summaryProfi = document.getElementById('summary-profi');
+    let profiStorage = localStorage.getItem('characterProfi');
+
+    if (profiStorage !== null) {
+    summaryProfi.textContent = profiStorage;
+    }
+
+
+    //ABILITIES
+    let abilityTr = document.getElementById('ability-tr');
+    
+    let skillPointsStorage = localStorage.getItem('skillPoints');
+    if(skillPointsStorage !== null) {
+        let skillPoints = JSON.parse(skillPointsStorage);
+        for (let item of skillPoints) {
+            abilityTr.querySelector('#td-' + item.id).textContent = item.value;
+        }
+        navAbility = true;
+    }
+
+    //AVATAR
+    let navAvatarElem = document.getElementById('avatar-pending');
+    let summaryAvatar = document.getElementById('user-avatar');
+    let avatarStorage = localStorage.getItem('avatarURL');
+
+    if (avatarStorage !== null) {
+        summaryAvatar.src = avatarStorage;
+        navAvatarElem.textContent = 'Done';
+        diceMovement('dice-avatar');
+        
+        navAvatar = true;
+    }
+
+        showPdfButton();
+}
