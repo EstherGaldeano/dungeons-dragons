@@ -282,7 +282,7 @@ h1,h2, h4, h5, h3 ,h6{
 
 
 #welcome-panel{
-    margin-top: 150px;
+    margin-top: 20px;
     padding: 50px;
     justify-content: center;
     align-items: center;
@@ -686,5 +686,9 @@ margin-bottom: 20px;
   .alert p{
     color: black;
     text-align: center;
+  }
+
+  #clear-button{
+    margin-top:100px ;
   }
 

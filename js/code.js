@@ -447,6 +447,7 @@ function showPdfButton() {
     if (navWelcome && navRaceOK && navClasses && navAlignment && navAbility && navAvatar) {
         pdfButton.hidden = false;
         mostrarAlerta();
+        clearButtonDisabled();
     }
 }
 
@@ -483,6 +484,11 @@ function mostrarAlerta() {
 }
 
 //Disable the button if input is empty
+function clearButtonDisabled(){
+    const clearButton = document.getElementById('clear-button');
+    clearButton.disabled = false;
+}
+
 function nameButtonDisabled() {
     const button = document.getElementById('name-button');
 
@@ -603,4 +609,9 @@ const loadLocalStorage =() => {
     }
 
         showPdfButton();
+}
+
+function clearStorage(){
+    localStorage.clear();
+    window.location.reload()
 }
