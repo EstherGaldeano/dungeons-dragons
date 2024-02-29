@@ -34,6 +34,16 @@
                 <div class="character-selection text-white">
                     <h1 class="character-title">Character Information</h1>
 
+                    
+                    <div id="print-pdf-button" hidden  class="character-info" data-set="print">
+                        <img id="dice-pdf" src="../images/icons/header-dice.png" alt="dice pdf">
+
+                        <div class="character-details" id="avatar">
+                            <h3 class="info-title">Download As PDF</h3>
+                        </div>
+                    </div>
+                    
+
                     <div class="character-info" onclick=" changeCentralPanel(this.dataset.set)" data-set="welcome">
                         <img id="dice-welcome" src="../images/icons/dice-red.png" alt="dice welcome">
 
@@ -88,15 +98,6 @@
                             <p id="avatar-pending" class="info-selected">Pending</p>
                         </div>
                     </div>
-
-                    <div id="print-pdf-button" hidden  class="character-info" data-set="print">
-                        <img id="dice-avatar" src="../images/icons/header-dice.png" alt="dice pdf">
-
-                        <div class="character-details" id="avatar">
-                            <h3 class="info-title">Download As PDF</h3>
-                        </div>
-                    </div>
-                    
 
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li id="class-list" class="list-classes">
